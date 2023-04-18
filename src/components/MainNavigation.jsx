@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Transition } from "@headlessui/react";
-import { Link, Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-function Nav() {
+function MainNavigation() {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div>
@@ -172,14 +172,8 @@ function Nav() {
           )}
         </Transition>
       </nav>
-
-      <main>
-        <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-          <Outlet />
-        </div>
-      </main>
     </div>
   );
 }
 
-export default Nav;
+export default MainNavigation;
