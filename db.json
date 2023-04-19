@@ -1,48 +1,5 @@
 {
-  "users": [
-    {
-      "name": "anas",
-      "id": "25OiUE1yIG28_oPo4YqCT",
-      "email": "anas@anas.com",
-      "password": "anas"
-    },
-    {
-      "name": "anas",
-      "id": "0g2iIOz3ZmXUJ9UYmMWSf",
-      "email": "anas@anas.com",
-      "password": "anas"
-    },
-    {
-      "name": "",
-      "id": "esTpJ4D5QYs0B0l0H8sq6",
-      "email": "",
-      "password": ""
-    },
-    {
-      "name": "etgetge",
-      "id": "kfe9qxaidVWidsMl52I0j",
-      "email": "nbkjgkg@jgjy.com",
-      "password": "ergergerge"
-    },
-    {
-      "name": "etgetge",
-      "id": "rTMTF1POkj_MpXslEvB2b",
-      "email": "nbkjgkg@jgjy.com",
-      "password": "ergergerge"
-    },
-    {
-      "name": "etgetge",
-      "id": "aU9PzrvM-pzsJvvXxDotf",
-      "email": "nbkjgkg@jgjy.com",
-      "password": "ergergerge"
-    },
-    {
-      "name": "rthwr",
-      "id": "ufxvTxvZzx1vXvPbY2QNf",
-      "email": "nbkjgkg@jgjy.com",
-      "password": "hththth"
-    }
-  ],
+  "users": [],
   "concerts": [],
   "reviews": []
 }

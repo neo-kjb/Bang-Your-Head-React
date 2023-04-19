@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Transition } from "@headlessui/react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 function MainNavigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,39 +26,60 @@ function MainNavigation() {
                     Bang Your Head
                   </Link>
 
-                  <Link
+                  <NavLink
                     to="/"
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-blue-700 font-bold"
+                        : "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                    }
                   >
                     Home
-                  </Link>
+                  </NavLink>
 
-                  <Link
+                  <NavLink
                     to="/concerts"
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-blue-700 font-bold"
+                        : "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                    }
+                    end
                   >
                     Concerts
-                  </Link>
+                  </NavLink>
 
-                  <Link
+                  <NavLink
                     to="/concerts/new"
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-blue-700 font-bold"
+                        : "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                    }
                   >
                     New Concert
-                  </Link>
+                  </NavLink>
 
-                  <Link
+                  <NavLink
                     to="/auth/signup"
-                    className="justify-end text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-blue-700 font-bold"
+                        : "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                    }
                   >
                     Register
-                  </Link>
-                  <Link
+                  </NavLink>
+                  <NavLink
                     to="/auth/login"
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-blue-700 font-bold"
+                        : "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                    }
                   >
                     Login
-                  </Link>
+                  </NavLink>
                   <Link
                     to="/auth/logout"
                     className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
