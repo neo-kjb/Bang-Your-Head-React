@@ -20,47 +20,47 @@ function MainNavigation() {
               <div className="hidden md:block">
                 <div className="ml-10 flex items-baseline space-x-4">
                   <Link
-                    to="#"
+                    to="/"
                     className=" hover:bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium"
                   >
                     Bang Your Head
                   </Link>
 
                   <Link
-                    to="#"
+                    to="/"
                     className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                   >
                     Home
                   </Link>
 
                   <Link
-                    to="#"
+                    to="/concerts"
                     className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                   >
                     Concerts
                   </Link>
 
                   <Link
-                    to="#"
+                    to="/concerts/new"
                     className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                   >
                     New Concert
                   </Link>
 
                   <Link
-                    to="#"
+                    to="/auth/signup"
                     className="justify-end text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                   >
                     Register
                   </Link>
                   <Link
-                    to="#"
+                    to="/auth/login"
                     className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                   >
                     Login
                   </Link>
                   <Link
-                    to="#"
+                    to="/auth/logout"
                     className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                   >
                     Logout
@@ -128,41 +128,41 @@ function MainNavigation() {
             <div className="md:hidden" id="mobile-menu">
               <div ref={ref} className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                 <Link
-                  to="#"
+                  to="/"
                   className="hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium"
                 >
                   Bang Your Head
                 </Link>
 
                 <Link
-                  to="#"
+                  to="/concerts"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                 >
                   Concerts
                 </Link>
 
                 <Link
-                  to="#"
+                  to="/concerts/new"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                 >
                   New Concert
                 </Link>
 
                 <Link
-                  to="#"
+                  to="/auth/signup"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                 >
                   Register
                 </Link>
 
                 <Link
-                  to="#"
+                  to="/auth/login"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                 >
                   Login
                 </Link>
                 <Link
-                  to="#"
+                  to="/auth/logout"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                 >
                   Logout
