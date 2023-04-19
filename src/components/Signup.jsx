@@ -1,7 +1,24 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useAddUserMutation } from "../store";
 
 function Signup() {
+  const navigate = useNavigate();
+  const [addUser, addUserResults] = useAddUserMutation();
+  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    const userData = {
+      name,
+      password,
+      email,
+    };
+    addUser(userData);
+    navigate("/");
+  };
+
   return (
     <div>
       <div className="flex flex-col items-center min-h-screen pt-6 sm:justify-center sm:pt-0 bg-gray-50">
@@ -11,7 +28,7 @@ function Signup() {
           </Link>
         </div>
         <div className="w-full px-6 py-4 mt-6 overflow-hidden bg-white shadow-md sm:max-w-md sm:rounded-lg">
-          <form>
+          <form onSubmit={handleFormSubmit}>
             <div>
               <label
                 htmlFor="name"
@@ -21,6 +38,8 @@ function Signup() {
               </label>
               <div className="flex flex-col items-start">
                 <input
+                  onChange={(e) => setName(e.target.value)}
+                  value={name}
                   type="text"
                   name="name"
                   className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
@@ -36,6 +55,8 @@ function Signup() {
               </label>
               <div className="flex flex-col items-start">
                 <input
+                  onChange={(e) => setEmail(e.target.value)}
+                  value={email}
                   type="email"
                   name="email"
                   className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
@@ -51,6 +72,8 @@ function Signup() {
               </label>
               <div className="flex flex-col items-start">
                 <input
+                  onChange={(e) => setPassword(e.target.value)}
+                  value={password}
                   type="password"
                   name="password"
                   className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
