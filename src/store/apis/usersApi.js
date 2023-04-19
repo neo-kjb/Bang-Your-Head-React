@@ -21,10 +21,22 @@ const usersApi=createApi({
                         }
                     }
                 }
+            }),
+            loginUser:builder.mutation({
+                query:(user)=>{
+                    return{
+                        url:'/login',
+                        method:'POST',
+                        body:{
+                            email:user.email,
+                            password:user.password
+                        }
+                    }
+                }
             })
         }
     }
 })
 
 export {usersApi}
-export const {useAddUserMutation}=usersApi
+export const {useAddUserMutation,useLoginUserMutation}=usersApi
