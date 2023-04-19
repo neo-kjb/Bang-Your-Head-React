@@ -1,9 +1,21 @@
 import React, { useState } from "react";
 import { Transition } from "@headlessui/react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { getAuthToken } from "../utils/getAuthToken";
 
 function MainNavigation() {
+  const navigate = useNavigate();
+  const token = getAuthToken();
   const [isOpen, setIsOpen] = useState(false);
+  const logoutHandler = () => {
+    const confirm = window.confirm("Are You Sure ?");
+    if (confirm) {
+      localStorage.removeItem("token");
+      return navigate("/");
+    } else {
+      return;
+    }
+  };
   return (
     <div>
       <nav className="bg-gray-800">
@@ -60,32 +72,39 @@ function MainNavigation() {
                     New Concert
                   </NavLink>
 
-                  <NavLink
-                    to="/auth/signup"
-                    className={({ isActive }) =>
-                      isActive
-                        ? "text-blue-700 font-bold"
-                        : "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                    }
-                  >
-                    Register
-                  </NavLink>
-                  <NavLink
-                    to="/auth/login"
-                    className={({ isActive }) =>
-                      isActive
-                        ? "text-blue-700 font-bold"
-                        : "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                    }
-                  >
-                    Login
-                  </NavLink>
-                  <Link
-                    to="/auth/logout"
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                  >
-                    Logout
-                  </Link>
+                  {!token && (
+                    <NavLink
+                      to="/auth/signup"
+                      className={({ isActive }) =>
+                        isActive
+                          ? "text-blue-700 font-bold"
+                          : "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                      }
+                    >
+                      Register
+                    </NavLink>
+                  )}
+                  {!token && (
+                    <NavLink
+                      to="/auth/login"
+                      className={({ isActive }) =>
+                        isActive
+                          ? "text-blue-700 font-bold"
+                          : "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                      }
+                    >
+                      Login
+                    </NavLink>
+                  )}
+                  {token && (
+                    <button
+                      onClick={logoutHandler}
+                      to="/auth/logout"
+                      className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                    >
+                      Logout
+                    </button>
+                  )}
                 </div>
               </div>
             </div>
@@ -169,25 +188,32 @@ function MainNavigation() {
                   New Concert
                 </Link>
 
-                <Link
-                  to="/auth/signup"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-                >
-                  Register
-                </Link>
+                {!token && (
+                  <Link
+                    to="/auth/signup"
+                    className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                  >
+                    Register
+                  </Link>
+                )}
 
-                <Link
-                  to="/auth/login"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-                >
-                  Login
-                </Link>
-                <Link
-                  to="/auth/logout"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-                >
-                  Logout
-                </Link>
+                {!token && (
+                  <Link
+                    to="/auth/login"
+                    className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                  >
+                    Login
+                  </Link>
+                )}
+                {token && (
+                  <button
+                    onClick={logoutHandler}
+                    to="/auth/logout"
+                    className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                  >
+                    Logout
+                  </button>
+                )}
               </div>
             </div>
           )}

@@ -13,9 +13,16 @@ function Login() {
       email,
       password,
     };
-    loginUser(userData);
-    console.log(loginUserResults);
-    navigate("/");
+    loginUser(userData)
+      .unwrap()
+      .then((res) => {
+        const token = res.accessToken;
+        localStorage.setItem("token", token);
+        navigate("/");
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   };
 
   return (

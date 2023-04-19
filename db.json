@@ -23,6 +23,24 @@
       "password": "$2a$10$CyY6WG71zBHnKKFNfhUwf.rw3HojFLJQCdQ5uZMluPWheSYU1l00K",
       "name": "test2",
       "id": "V8ebR5tKhGtANlp7wlrW-"
+    },
+    {
+      "email": "test3@test.com",
+      "password": "$2a$10$wnxbXfJji1Cj7jmZgEmLYeWaix7WiO/IudO3M/fjMGAiGjiNij6EG",
+      "name": "anas",
+      "id": "cd_T9KqO24npTKh4WL9jT"
+    },
+    {
+      "email": "test4@test.com",
+      "password": "$2a$10$FP/IO7BmsmA/s7/JJ87GuuTMgg7CxEZeQa33ABqI.urdslgUwEPva",
+      "name": "anas",
+      "id": "N5pRzFRMMuLb6wnqoOXo8"
+    },
+    {
+      "email": "test8@test.com",
+      "password": "$2a$10$P4xFXwHhDxSMUo/EZREvLu6KqbuRhDFjxTO0nt8eSwiNVCXx6Nsza",
+      "name": "anas",
+      "id": "JJVPJ7-pggo9V-zgVQveU"
     }
   ],
   "concerts": [],

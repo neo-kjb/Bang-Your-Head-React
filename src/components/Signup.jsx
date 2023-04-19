@@ -15,8 +15,13 @@ function Signup() {
       password,
       email,
     };
-    addUser(userData);
-    navigate("/");
+    addUser(userData)
+      .unwrap()
+      .then((res) => {
+        const token = res.accessToken;
+        localStorage.setItem("token", token);
+        navigate("/");
+      });
   };
 
   return (
