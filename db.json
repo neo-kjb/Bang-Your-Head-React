@@ -1,46 +1,22 @@
 {
   "users": [
     {
-      "email": "nbkjgkg@jgjy.com",
-      "password": "$2a$10$UJzcm9gRsdAyNQoNJl36zOgtjbFR5w9xDoVAoKbdpvtdYuY2JTqqS",
-      "name": "hvjhv",
-      "id": "bP41F3abXMaz8UlMDKTxY"
+      "email": "test@test.com",
+      "password": "$2a$10$KCBI3JLe1wcARIC.AjXCT.dLTOvcWwahKCuXFe8.TS9QFFbEU1H3K",
+      "name": "anas",
+      "id": "97OqiP8fB7pUyBvJL09HT"
     },
     {
       "email": "anas@anas.com",
-      "password": "$2a$10$t1VWW0UgoX3UIfr/40rlCe3WKibyJ82zILugqx2O8YgvviZ8UuuYq",
-      "name": "anas",
-      "id": "NC6EUneLdctHsX8DU3HNa"
+      "password": "$2a$10$LkAJE.ZEatYd3aCIfqichOpGspOphegzK8LRQl/Ddzu6z0dXJcF02",
+      "name": "asasas",
+      "id": "k9nvGJZdBoWimXSjCCdJ9"
     },
     {
-      "email": "tes@test.com",
-      "password": "$2a$10$8YpAbtcv1aQnaEGXpCZay.l6tVVH/vJmXZoGikN3LnAE4TlgI8Ot2",
-      "name": "test",
-      "id": "1lwR0NuWpNnN28mPvV7aa"
-    },
-    {
-      "email": "test2@test.com",
-      "password": "$2a$10$CyY6WG71zBHnKKFNfhUwf.rw3HojFLJQCdQ5uZMluPWheSYU1l00K",
-      "name": "test2",
-      "id": "V8ebR5tKhGtANlp7wlrW-"
-    },
-    {
-      "email": "test3@test.com",
-      "password": "$2a$10$wnxbXfJji1Cj7jmZgEmLYeWaix7WiO/IudO3M/fjMGAiGjiNij6EG",
-      "name": "anas",
-      "id": "cd_T9KqO24npTKh4WL9jT"
-    },
-    {
-      "email": "test4@test.com",
-      "password": "$2a$10$FP/IO7BmsmA/s7/JJ87GuuTMgg7CxEZeQa33ABqI.urdslgUwEPva",
-      "name": "anas",
-      "id": "N5pRzFRMMuLb6wnqoOXo8"
-    },
-    {
-      "email": "test8@test.com",
-      "password": "$2a$10$P4xFXwHhDxSMUo/EZREvLu6KqbuRhDFjxTO0nt8eSwiNVCXx6Nsza",
-      "name": "anas",
-      "id": "JJVPJ7-pggo9V-zgVQveU"
+      "email": "shdfgkhilgkfj@dvfbghkljkh.com",
+      "password": "$2a$10$HTlQnCB44snmb6FMMFRr5.V3kvLxB5cajLPHdBmP1rWBZEd5OKL1a",
+      "name": "watermelon",
+      "id": "yAoAgmdaxMG0mEbsR9IJT"
     }
   ],
   "concerts": [],
