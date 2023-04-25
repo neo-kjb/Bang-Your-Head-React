@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Form, json, useNavigate } from "react-router-dom";
 import { useLoginUserMutation } from "../store";
 
 function Login() {
@@ -14,15 +14,22 @@ function Login() {
       email,
       password,
     };
+
     loginUser(userData)
       .unwrap()
       .then((res) => {
+        console.log(loginUserResults);
+
         const token = res.accessToken;
         localStorage.setItem("token", token);
         navigate("/");
       })
       .catch((e) => {
         console.log(e);
+        if (e.error) {
+          console.log(e);
+          return json({ message: "Failed To Connect!" }, { status: 500 });
+        }
         setErrMsg(e.data);
       });
   };
@@ -49,7 +56,7 @@ function Login() {
               </div>
             </div>
           )}
-          <form onSubmit={handleFormSubmit}>
+          <Form method="POST" onSubmit={handleFormSubmit}>
             <div className="mt-4">
               <label
                 htmlFor="email"
@@ -94,7 +101,7 @@ function Login() {
                 Login
               </button>
             </div>
-          </form>
+          </Form>
         </div>
       </div>
     </div>

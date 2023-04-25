@@ -1,5 +1,5 @@
 import { nanoid } from '@reduxjs/toolkit'
-import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
+import {createApi, fetchBaseQuery,} from '@reduxjs/toolkit/query/react'
 
 const usersApi=createApi({
     reducerPath:'users',
@@ -30,7 +30,7 @@ const usersApi=createApi({
                         body:{
                             email:user.email,
                             password:user.password
-                        }
+                        },
                     }
                 }
             })

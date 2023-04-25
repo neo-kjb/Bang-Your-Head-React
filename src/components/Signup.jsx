@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Form, Link, json, useNavigate } from "react-router-dom";
 import { useAddUserMutation } from "../store";
 
 function Signup() {
@@ -8,6 +8,8 @@ function Signup() {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+  const [errMsg, setErrMsg] = useState("");
+
   const handleFormSubmit = (event) => {
     event.preventDefault();
     const userData = {
@@ -21,6 +23,14 @@ function Signup() {
         const token = res.accessToken;
         localStorage.setItem("token", token);
         navigate("/");
+      })
+      .catch((e) => {
+        console.log(e);
+        if (e.error) {
+          console.log(e);
+          return json({ message: "Failed To Connect!" }, { status: 500 });
+        }
+        setErrMsg(e.data);
       });
   };
 
@@ -35,7 +45,17 @@ function Signup() {
           />
         </div>
         <div className="w-full px-6 py-4 mt-6 overflow-hidden bg-white shadow-md sm:max-w-md sm:rounded-lg">
-          <form onSubmit={handleFormSubmit}>
+          {errMsg && (
+            <div className="my-6" role="alert">
+              <div className="bg-red-500 text-white font-bold rounded-t px-4 py-2">
+                Regester Failed!
+              </div>
+              <div className="border border-t-0 border-red-400 rounded-b bg-red-100 px-4 py-3 text-red-700">
+                <p>{errMsg}</p>
+              </div>
+            </div>
+          )}
+          <Form method="POST" onSubmit={handleFormSubmit}>
             <div>
               <label
                 htmlFor="name"
@@ -50,6 +70,7 @@ function Signup() {
                   type="text"
                   name="name"
                   className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                  required
                 />
               </div>
             </div>
@@ -103,7 +124,7 @@ function Signup() {
                 Register
               </button>
             </div>
-          </form>
+          </Form>
         </div>
       </div>
     </div>
