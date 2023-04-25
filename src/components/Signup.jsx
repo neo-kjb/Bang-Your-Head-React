@@ -1,8 +1,11 @@
 import { useState } from "react";
-import { Form, Link, json, useNavigate } from "react-router-dom";
-import { useAddUserMutation } from "../store";
+import { Link, json, useNavigate } from "react-router-dom";
+import { setCurrentUser, useAddUserMutation } from "../store";
+import { useDispatch, useSelector } from "react-redux";
 
 function Signup() {
+  const currentUser = useSelector((state) => state.currentUser);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [addUser, addUserResults] = useAddUserMutation();
   const [name, setName] = useState("");
@@ -21,6 +24,14 @@ function Signup() {
       .unwrap()
       .then((res) => {
         const token = res.accessToken;
+        const currentUserData = {
+          accessToken: token,
+          id: res.user.id,
+          email: res.user.email,
+          name: res.user.name,
+        };
+        dispatch(setCurrentUser(currentUserData));
+        console.log(currentUser);
         localStorage.setItem("token", token);
         navigate("/");
       })
@@ -55,7 +66,7 @@ function Signup() {
               </div>
             </div>
           )}
-          <Form method="POST" onSubmit={handleFormSubmit}>
+          <form onSubmit={handleFormSubmit}>
             <div>
               <label
                 htmlFor="name"
@@ -124,7 +135,7 @@ function Signup() {
                 Register
               </button>
             </div>
-          </Form>
+          </form>
         </div>
       </div>
     </div>

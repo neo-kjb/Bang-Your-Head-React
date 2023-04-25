@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Form, json, useNavigate } from "react-router-dom";
-import { useLoginUserMutation } from "../store";
+import { setCurrentUser, useLoginUserMutation } from "../store";
+import { useDispatch } from "react-redux";
 
 function Login() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [loginUser, loginUserResults] = useLoginUserMutation();
   const [password, setPassword] = useState("");
@@ -18,9 +20,17 @@ function Login() {
     loginUser(userData)
       .unwrap()
       .then((res) => {
-        console.log(loginUserResults);
+        console.log(res);
 
         const token = res.accessToken;
+        const currentUserData = {
+          accessToken: token,
+          id: res.user.id,
+          email: res.user.email,
+          name: res.user.name,
+        };
+
+        dispatch(setCurrentUser(currentUserData));
         localStorage.setItem("token", token);
         navigate("/");
       })

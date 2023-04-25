@@ -8,7 +8,7 @@ function NewConcert() {
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
   const [imageUrl, setImageUrl] = useState("");
-  const userId = useSelector((state) => state.currentUser.userId);
+  const userId = useSelector((state) => state.currentUser.currentUserId);
   const [addConcert, addConcertResults] = useAddConcertMutation();
   const addConcertHandler = (event) => {
     event.preventDefault();
