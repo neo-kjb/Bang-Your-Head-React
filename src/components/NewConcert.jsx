@@ -1,6 +1,18 @@
-import React from "react";
+import { useState } from "react";
+import { useAddConcertMutation } from "../store";
+import { useSelector } from "react-redux";
 
 function NewConcert() {
+  const title = useState("");
+  const price = useState("");
+  const description = useState("");
+  const location = useState("");
+  const imageUrl = useState("");
+  // const userId=useSelector(state=>state.users.)
+  const [addConcert, addConcertResults] = useAddConcertMutation();
+  const addConcertHandler = (event) => {
+    event.preventDefault();
+  };
   return (
     <div>
       <div className="flex flex-col items-center min-h-screen pt-6 sm:justify-center sm:pt-0 bg-gray-50">
@@ -9,7 +21,7 @@ function NewConcert() {
         </div>
 
         <div className="w-full px-6 py-4 mt-6 overflow-hidden bg-white shadow-md sm:max-w-md sm:rounded-lg">
-          <form>
+          <form onSubmit={addConcertHandler}>
             <div className="mt-4">
               <label
                 htmlFor="title"
@@ -90,7 +102,7 @@ function NewConcert() {
                 type="submit"
                 className="inline-flex items-center px-4 py-2 ml-4 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-900 border border-transparent rounded-md active:bg-gray-900 false"
               >
-                Login
+                Add Concert
               </button>
             </div>
           </form>
