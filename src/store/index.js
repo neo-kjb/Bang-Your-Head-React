@@ -21,8 +21,8 @@ const store =configureStore({
 setupListeners(store.dispatch)
 
 export {store}
-export const clearUser=currentUserSlice.actions.clearUser
-export const setUser=currentUserSlice.actions.setUser
+export const clearCurrentUser=currentUserSlice.actions.clearCurrentUser
+export const setCurrentUser=currentUserSlice.actions.setCurrentUser
 export {useAddUserMutation,useLoginUserMutation}from './apis/usersApi'
 export {useAddReviewMutation,useFetchReviewsQuery,useRemoveReviewMutation}from './apis/reviewsApi'
 export {useAddConcertMutation,useFetchConcertDetailsQuery,useFetchConcertsQuery,useRemoveConcertMutation}from'./apis/concertsApi'

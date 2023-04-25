@@ -3,15 +3,24 @@ import { useAddConcertMutation } from "../store";
 import { useSelector } from "react-redux";
 
 function NewConcert() {
-  const title = useState("");
-  const price = useState("");
-  const description = useState("");
-  const location = useState("");
-  const imageUrl = useState("");
-  // const userId=useSelector(state=>state.users.)
+  const [title, setTitle] = useState("");
+  const [price, setPrice] = useState("");
+  const [description, setDescription] = useState("");
+  const [location, setLocation] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
+  const userId = useSelector((state) => state.currentUser.userId);
   const [addConcert, addConcertResults] = useAddConcertMutation();
   const addConcertHandler = (event) => {
     event.preventDefault();
+    const concertData = {
+      title,
+      price,
+      description,
+      location,
+      imageUrl,
+      userId,
+    };
+    addConcert(concertData);
   };
   return (
     <div>
@@ -31,6 +40,8 @@ function NewConcert() {
               </label>
               <div className="flex flex-col items-start">
                 <input
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
                   type="text"
                   name="title"
                   className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
@@ -46,6 +57,8 @@ function NewConcert() {
               </label>
               <div className="flex flex-col items-start">
                 <input
+                  value={location}
+                  onChange={(e) => setLocation(e.target.value)}
                   type="text"
                   name="price"
                   className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
@@ -61,6 +74,8 @@ function NewConcert() {
               </label>
               <div className="flex flex-col items-start">
                 <input
+                  value={price}
+                  onChange={(e) => setPrice(e.target.value)}
                   type="number"
                   name="price"
                   className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
@@ -76,6 +91,8 @@ function NewConcert() {
               </label>
               <div className="flex flex-col items-start">
                 <textarea
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
                   type="text"
                   name="description"
                   className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
@@ -84,17 +101,20 @@ function NewConcert() {
             </div>
             <div className="mt-4">
               <label
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                htmlFor="multiple_files"
+                htmlFor="imageUrl"
+                className="block text-sm font-medium text-gray-700 undefined"
               >
-                Upload multiple files
+                Image URL
               </label>
-              <input
-                className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                id="multiple_files"
-                type="file"
-                multiple
-              />
+              <div className="flex flex-col items-start">
+                <input
+                  value={imageUrl}
+                  onChange={(e) => setImageUrl(e.target.value)}
+                  type="text"
+                  name="imageUrl"
+                  className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                />
+              </div>
             </div>
 
             <div className="flex items-center justify-end mt-4">

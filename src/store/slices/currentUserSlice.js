@@ -9,12 +9,12 @@ const currentUserSlice=createSlice({
     },
     reducers:{
 
-        setUser(state,action){
+        setCurrentUser(state,action){
             state.accessToken=action.payload.accessToken
             state.email=action.payload.email
             state.userId=action.payload.id
         },
-        clearUser(state,action){
+        clearCurrentUser(state,action){
             state.accessToken=''
             state.userId=''
             state.email=''
