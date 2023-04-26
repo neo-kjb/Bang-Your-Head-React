@@ -38,8 +38,12 @@ function Signup() {
       .catch((e) => {
         console.log(e);
         if (e.error) {
-          console.log(e);
-          return json({ message: "Failed To Connect!" }, { status: 500 });
+          const confirm = window.confirm(
+            "Failed To Connect!! Reload the Page?"
+          );
+          if (confirm) {
+            window.location.reload();
+          }
         }
         setErrMsg(e.data);
       });

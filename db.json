@@ -67,6 +67,25 @@
       "id": "b_jsYuoGOqVbqY9rGIZ9D"
     }
   ],
-  "concerts": [],
+  "concerts": [
+    {
+      "title": "fghsfh",
+      "id": "DFH2HQ5k31Lm3dXnmmKJi",
+      "price": "355",
+      "description": "ergregerg",
+      "location": "ffghdfs",
+      "imageUrl": "ergrgdrg",
+      "userId": ""
+    },
+    {
+      "title": "fghsfh",
+      "id": "O_MIsoBMBnY_4xd5G6G1C",
+      "price": "355",
+      "description": "ergregerg",
+      "location": "ffghdfs",
+      "imageUrl": "ergrgdrg",
+      "userId": ""
+    }
+  ],
   "reviews": []
 }

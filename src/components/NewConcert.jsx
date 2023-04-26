@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { useAddConcertMutation } from "../store";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 function NewConcert() {
+  const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
@@ -20,7 +22,24 @@ function NewConcert() {
       imageUrl,
       userId,
     };
-    addConcert(concertData);
+
+    addConcert(concertData)
+      .unwrap()
+      .then((res) => {
+        console.log(res);
+        navigate(`/concerts/${res.id}`);
+      })
+      .catch((e) => {
+        if (e.error) {
+          const confirm = window.confirm(
+            "Failed To Connect!! Reload the Page?"
+          );
+          if (confirm) {
+            window.location.reload();
+          }
+        }
+      });
+    console.log(addConcertResults);
   };
   return (
     <div>
@@ -40,6 +59,7 @@ function NewConcert() {
               </label>
               <div className="flex flex-col items-start">
                 <input
+                  required
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                   type="text"
@@ -57,6 +77,7 @@ function NewConcert() {
               </label>
               <div className="flex flex-col items-start">
                 <input
+                  required
                   value={location}
                   onChange={(e) => setLocation(e.target.value)}
                   type="text"
@@ -74,6 +95,7 @@ function NewConcert() {
               </label>
               <div className="flex flex-col items-start">
                 <input
+                  required
                   value={price}
                   onChange={(e) => setPrice(e.target.value)}
                   type="number"
@@ -91,6 +113,7 @@ function NewConcert() {
               </label>
               <div className="flex flex-col items-start">
                 <textarea
+                  required
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                   type="text"
@@ -108,6 +131,7 @@ function NewConcert() {
               </label>
               <div className="flex flex-col items-start">
                 <input
+                  required
                   value={imageUrl}
                   onChange={(e) => setImageUrl(e.target.value)}
                   type="text"
@@ -119,6 +143,7 @@ function NewConcert() {
 
             <div className="flex items-center justify-end mt-4">
               <button
+                disabled={addConcertResults.isLoading}
                 type="submit"
                 className="inline-flex items-center px-4 py-2 ml-4 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-900 border border-transparent rounded-md active:bg-gray-900 false"
               >
