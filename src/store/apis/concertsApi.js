@@ -43,12 +43,12 @@ const concertsApi=createApi({
                 }
             }),
             fetchConcertDetails:builder.query({
-                query(concert){
+                query(concertId){
                     return{
                         url:'/concerts',
                         method:'GET',
                         params:{
-                            id:concert.id
+                            id:concertId
                         }
                 
                     }
