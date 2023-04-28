@@ -9,6 +9,10 @@ const concertsApi=createApi({
     endpoints(builder){
         return{
             addConcert:builder.mutation({
+                invalidatesTags:(results)=>{
+
+                    return[{type:'Concert',id:results.id}]
+                },
                 query:(concert)=>{
                     return{
                         url:'/concerts',
@@ -34,6 +38,13 @@ const concertsApi=createApi({
                 }
             }),
             fetchConcerts:builder.query({
+                providesTags:(results,error,concert)=>{
+                    const tags=results.map((concert)=>{
+                        return{type:'Concert',id:concert.id}
+                    })
+                    
+                    return tags
+                },
                 query(){
                     return{
                         url:'/concerts',
