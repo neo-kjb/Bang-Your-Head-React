@@ -65,6 +65,12 @@
       "password": "$2a$10$A3YqKw/AXPoZ9q05npW43uMkUjmHaQdENHXcSA2yoX423ESgBET2K",
       "name": "test",
       "id": "b_jsYuoGOqVbqY9rGIZ9D"
+    },
+    {
+      "email": "d@h.com",
+      "password": "$2a$10$B1GNgH2GvKbbRnnOA6koyuTh5Pukd3fiX2Tc2WG1Z8cnejXIjkE/S",
+      "name": "h@h.com",
+      "id": "X0D9AYnS7ffHQOyIfCU05"
     }
   ],
   "concerts": [

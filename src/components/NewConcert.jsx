@@ -2,16 +2,34 @@ import { useState } from "react";
 import { useAddConcertMutation } from "../store";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { getAuthToken } from "../utils/getAuthToken";
 
 function NewConcert() {
+  const token = getAuthToken();
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
   const [imageUrl, setImageUrl] = useState("");
-  const userId = useSelector((state) => state.currentUser.currentUserId);
+  const { currentUserId, currentUserAccessToken } = useSelector(
+    (state) => state.currentUser
+  );
+  const confirmedUser = token === currentUserAccessToken;
   const [addConcert, addConcertResults] = useAddConcertMutation();
+  if (!confirmedUser) {
+    return (
+      <div className="flex flex-col items-center">
+        <p className="mb-4">Please login first to access this page.</p>
+        <button
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          onClick={() => navigate("/auth/login")}
+        >
+          Login
+        </button>
+      </div>
+    );
+  }
   const addConcertHandler = (event) => {
     event.preventDefault();
     const concertData = {
@@ -20,7 +38,7 @@ function NewConcert() {
       description,
       location,
       imageUrl,
-      userId,
+      userId: currentUserId,
     };
 
     addConcert(concertData)
