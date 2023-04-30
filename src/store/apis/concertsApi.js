@@ -6,13 +6,12 @@ const concertsApi=createApi({
     baseQuery:fetchBaseQuery({
         baseUrl:'http://localhost:3005'
     }),
+    tagTypes:['concert'],
     endpoints(builder){
         return{
             addConcert:builder.mutation({
-                invalidatesTags:(results)=>{
-
-                    return[{type:'Concert',id:results.id}]
-                },
+                invalidatesTags: (result, error, concert) => [{ type: 'concert', id: concert.id }],
+                
                 query:(concert)=>{
                     return{
                         url:'/concerts',
@@ -30,6 +29,8 @@ const concertsApi=createApi({
                 }
             }),
             removeConcert:builder.mutation({
+                invalidatesTags: (result, error, concert) => [{ type: 'concert', id: concert.id }],
+
                 query(concert){
                     return{
                         url:`/concerts/${concert.id}`,
@@ -38,13 +39,11 @@ const concertsApi=createApi({
                 }
             }),
             fetchConcerts:builder.query({
-                providesTags:(results,error,concert)=>{
-                    const tags=results.map((concert)=>{
-                        return{type:'Concert',id:concert.id}
-                    })
-                    
-                    return tags
-                },
+                providesTags: (result, error, concert) =>
+                result
+                  ? [...result.map(({ id }) => ({ type: 'concert', id })), 'concert']
+                  : ['concert']
+                  ,
                 query(){
                     return{
                         url:'/concerts',

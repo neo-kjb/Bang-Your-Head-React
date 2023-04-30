@@ -1,11 +1,19 @@
+import { useNavigate } from "react-router-dom";
 import { useRemoveConcertMutation } from "../store";
 
 function RenderConcertDetails({ concert }) {
+  const navigate = useNavigate();
   const [removeConcert, removeConcertResults] = useRemoveConcertMutation();
   const handleDeleteConcert = () => {
     removeConcert(concert);
-    console.log(removeConcertResults);
+    navigate("/concerts");
   };
+  if (removeConcertResults.error) {
+    const confirm = window.confirm("Failed To Connect!! Reload the Page?");
+    if (confirm) {
+      window.location.reload();
+    }
+  }
 
   return (
     <div>
@@ -62,6 +70,7 @@ function RenderConcertDetails({ concert }) {
 
           <div className="flex items-center justify-end mt-4">
             <button
+              disabled={removeConcertResults.isLoading}
               onClick={handleDeleteConcert}
               type="submit"
               className="inline-flex items-center px-4 py-2 ml-4 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-900 border border-transparent rounded-md active:bg-gray-900 false"

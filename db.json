@@ -79,43 +79,6 @@
       "id": "o2CVOi9j5ajLXjt0rs8_s"
     }
   ],
-  "concerts": [
-    {
-      "title": "hhhhhhhhhh",
-      "id": "xsETS1p_nkS08dbycPiY6",
-      "price": "123",
-      "description": "hhhhhhhhhhhhhhhhh",
-      "location": "hhhhhhhhhhhh",
-      "imageUrl": "hhhhhhhhhhhhhhhhhhhhh",
-      "userId": "X0D9AYnS7ffHQOyIfCU05"
-    },
-    {
-      "title": "llllllllllll",
-      "id": "1p7k8cp42pa2qVrr_dTQE",
-      "price": "76",
-      "description": "ku",
-      "location": "llllllllllll",
-      "imageUrl": "hhhhhhhhhhhhhhhhhhhhh",
-      "userId": "X0D9AYnS7ffHQOyIfCU05"
-    },
-    {
-      "title": "wfwefwe",
-      "id": "dPHub1rQwmXIIucdC-JNg",
-      "price": "3",
-      "description": "wefwef",
-      "location": "fwefwef",
-      "imageUrl": "wefwef",
-      "userId": "X0D9AYnS7ffHQOyIfCU05"
-    },
-    {
-      "title": ",yfuyf,gm",
-      "id": "9lJ9UGUtRM-OXY2yQF4-G",
-      "price": "5454",
-      "description": ".jyfyfkuyf",
-      "location": "dfgdfgdfgdfg",
-      "imageUrl": "ztu5EYTHDGHAETE5",
-      "userId": "o2CVOi9j5ajLXjt0rs8_s"
-    }
-  ],
+  "concerts": [],
   "reviews": []
 }
