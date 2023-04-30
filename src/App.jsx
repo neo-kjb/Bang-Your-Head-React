@@ -7,6 +7,7 @@ import ConcertDetails from "./components/ConcertDetails";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
 import Error from "./components/Error";
+import EditConcert from "./components/EditConcert";
 
 function App() {
   const router = createBrowserRouter([
@@ -18,6 +19,7 @@ function App() {
         { path: "/", element: <Home /> },
         { path: "/concerts", element: <Concerts /> },
         { path: "/concerts/:concertId", element: <ConcertDetails /> },
+        { path: "/concerts/:concertId/edit", element: <EditConcert /> },
         { path: "/concerts/new", element: <NewConcert /> },
         { path: "/auth/signup", element: <Signup /> },
         { path: "/auth/login", element: <Login /> },

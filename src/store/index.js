@@ -25,4 +25,4 @@ export const clearCurrentUser=currentUserSlice.actions.clearCurrentUser
 export const setCurrentUser=currentUserSlice.actions.setCurrentUser
 export {useAddUserMutation,useLoginUserMutation}from './apis/usersApi'
 export {useAddReviewMutation,useFetchReviewsQuery,useRemoveReviewMutation}from './apis/reviewsApi'
-export {useAddConcertMutation,useFetchConcertDetailsQuery,useFetchConcertsQuery,useRemoveConcertMutation}from'./apis/concertsApi'
+export {useAddConcertMutation,useFetchConcertDetailsQuery,useFetchConcertsQuery,useRemoveConcertMutation,useEditConcertMutation}from'./apis/concertsApi'

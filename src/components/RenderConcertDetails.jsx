@@ -73,9 +73,16 @@ function RenderConcertDetails({ concert }) {
               disabled={removeConcertResults.isLoading}
               onClick={handleDeleteConcert}
               type="submit"
-              className="inline-flex items-center px-4 py-2 ml-4 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-900 border border-transparent rounded-md active:bg-gray-900 false"
+              className="inline-flex items-center px-4 py-2 ml-4 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-red-900 border border-transparent rounded-md active:bg-red-900 false"
             >
               Delete Concert
+            </button>
+            <button
+              onClick={() => navigate(`/concerts/${concert.id}/edit`)}
+              type="submit"
+              className="inline-flex items-center px-4 py-2 ml-4 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-900 border border-transparent rounded-md active:bg-gray-900 false"
+            >
+              Edit Concert
             </button>
           </div>
         </div>

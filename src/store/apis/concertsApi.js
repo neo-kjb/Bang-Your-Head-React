@@ -53,6 +53,11 @@ const concertsApi=createApi({
                 }
             }),
             fetchConcertDetails:builder.query({
+                providesTags:(result,error,concertId)=>{
+                  return  result
+                  ? [...result.map(({id}) => ({ type: 'concert', id:concertId })), 'concert']
+                  : ['concert']}
+                ,
                 query(concertId){
                     return{
                         url:'/concerts',
@@ -63,6 +68,22 @@ const concertsApi=createApi({
                 
                     }
                 }
+            }),
+            editConcert:builder.mutation({
+                invalidatesTags: (result, error, concert) => [{ type: 'concert', id: concert.id }],
+                query(concert){
+                    return{
+                        url:`/concerts/${concert.id}`,
+                        method:'PATCH',
+                        body:{
+                            title:concert.title,
+                            price:concert.price,
+                            description:concert.description,
+                            location:concert.location,
+                            imageUrl:concert.imageUrl,
+                        }
+                    }
+                }
             })
 
             
@@ -71,4 +92,4 @@ const concertsApi=createApi({
     }
 })
 export {concertsApi}
-export const{useAddConcertMutation,useFetchConcertDetailsQuery,useFetchConcertsQuery,useRemoveConcertMutation}= concertsApi
+export const{useAddConcertMutation,useFetchConcertDetailsQuery,useFetchConcertsQuery,useRemoveConcertMutation,useEditConcertMutation}= concertsApi
