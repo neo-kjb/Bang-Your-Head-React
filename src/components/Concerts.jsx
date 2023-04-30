@@ -19,7 +19,7 @@ function Concerts() {
   return (
     <>
       <h1 className="text-xl mb-6">All Concerts</h1>
-      <div>{content}</div>;
+      <div>{content}</div>
     </>
   );
 }

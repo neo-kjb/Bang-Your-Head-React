@@ -19,8 +19,6 @@ function ConcertDetails() {
     ));
   }
 
-  console.log(data);
-
   return <div>{content}</div>;
 }
 

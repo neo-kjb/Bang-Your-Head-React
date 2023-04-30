@@ -1,10 +1,9 @@
 import { useState } from "react";
-import { Link, json, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { setCurrentUser, useAddUserMutation } from "../store";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 function Signup() {
-  const currentUser = useSelector((state) => state.currentUser);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [addUser, addUserResults] = useAddUserMutation();
@@ -31,7 +30,6 @@ function Signup() {
           name: res.user.name,
         };
         dispatch(setCurrentUser(currentUserData));
-        console.log(currentUser);
         localStorage.setItem("token", token);
         navigate("/");
       })

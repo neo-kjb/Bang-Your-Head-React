@@ -12,12 +12,9 @@ function NewConcert() {
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
   const [imageUrl, setImageUrl] = useState("");
-  const { currentUserId, currentUserAccessToken } = useSelector(
-    (state) => state.currentUser
-  );
-  const confirmedUser = token === currentUserAccessToken;
+  const { currentUserId } = useSelector((state) => state.currentUser);
   const [addConcert, addConcertResults] = useAddConcertMutation();
-  if (!confirmedUser) {
+  if (!token) {
     return (
       <div className="flex flex-col items-center">
         <p className="mb-4">Please login first to access this page.</p>

@@ -2,15 +2,11 @@ import React, { useState } from "react";
 import { Transition } from "@headlessui/react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { getAuthToken } from "../utils/getAuthToken";
-import { useSelector } from "react-redux";
 
 function MainNavigation() {
   const navigate = useNavigate();
   const token = getAuthToken();
-  const currentUserToken = useSelector(
-    (state) => state.currentUser.currentUserAccessToken
-  );
-  const confirmedUser = token === currentUserToken;
+
   const [isOpen, setIsOpen] = useState(false);
   const logoutHandler = () => {
     const confirm = window.confirm("Are You Sure ?");
@@ -77,7 +73,7 @@ function MainNavigation() {
                     New Concert
                   </NavLink>
 
-                  {!confirmedUser && (
+                  {!token && (
                     <NavLink
                       to="/auth/signup"
                       className={({ isActive }) =>
@@ -89,7 +85,7 @@ function MainNavigation() {
                       Register
                     </NavLink>
                   )}
-                  {!confirmedUser && (
+                  {!token && (
                     <NavLink
                       to="/auth/login"
                       className={({ isActive }) =>
@@ -101,7 +97,7 @@ function MainNavigation() {
                       Login
                     </NavLink>
                   )}
-                  {confirmedUser && (
+                  {token && (
                     <button
                       onClick={logoutHandler}
                       to="/auth/logout"
@@ -193,7 +189,7 @@ function MainNavigation() {
                   New Concert
                 </Link>
 
-                {!confirmedUser && (
+                {!token && (
                   <Link
                     to="/auth/signup"
                     className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
@@ -202,7 +198,7 @@ function MainNavigation() {
                   </Link>
                 )}
 
-                {!confirmedUser && (
+                {!token && (
                   <Link
                     to="/auth/login"
                     className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
@@ -210,7 +206,7 @@ function MainNavigation() {
                     Login
                   </Link>
                 )}
-                {confirmedUser && (
+                {token && (
                   <button
                     onClick={logoutHandler}
                     to="/auth/logout"
