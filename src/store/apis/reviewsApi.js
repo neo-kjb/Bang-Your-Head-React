@@ -12,7 +12,7 @@ const reviewsApi=createApi({
             addReview:builder.mutation({
                 invalidatesTags: (result, error, review) => {
                     console.log(review);
-                    return[{ type: 'concert', id: review.id }]},
+                    return[{ type: 'review', id: review.id }]},
 
                 query:(review)=>{
                     return{
