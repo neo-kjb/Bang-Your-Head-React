@@ -1,6 +1,6 @@
 import { useFetchConcertsQuery } from "../store";
-import RenderConcerts from "./RenderConcerts";
-import Skeleton from "./Skeleton";
+import RenderConcerts from "../components/RenderConcerts";
+import Skeleton from "../components/Skeleton";
 
 function Concerts() {
   const { data, error, isLoading } = useFetchConcertsQuery();

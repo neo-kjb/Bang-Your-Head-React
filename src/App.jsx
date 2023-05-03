@@ -1,13 +1,13 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Root from "./components/Root";
-import Home from "./components/Home";
-import Concerts from "./components/Concerts";
-import NewConcert from "./components/NewConcert";
-import ConcertDetails from "./components/ConcertDetails";
-import Signup from "./components/Signup";
-import Login from "./components/Login";
-import Error from "./components/Error";
-import EditConcert from "./components/EditConcert";
+import Home from "./Pages/Home";
+import Concerts from "./Pages/Concerts";
+import NewConcert from "./Pages/NewConcert";
+import ConcertDetails from "./Pages/ConcertDetails";
+import Signup from "./Pages/Signup";
+import Login from "./Pages/Login";
+import Error from "./Pages/Error";
+import EditConcert from "./Pages/EditConcert";
 
 function App() {
   const router = createBrowserRouter([

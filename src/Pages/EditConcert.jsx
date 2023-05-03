@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useFetchConcertDetailsQuery } from "../store";
-import Skeleton from "./Skeleton";
-import EditConcertForm from "./EditConcertForm";
+import Skeleton from "../components/Skeleton";
+import EditConcertForm from "../components/EditConcertForm";
 import { useSelector } from "react-redux";
 
 function EditConcert() {

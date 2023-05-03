@@ -14,7 +14,8 @@ const reviewsApi=createApi({
                         url:'/reviews',
                         method:'POST',
                         body:{
-                            reviewText:review.text,
+                            reviewText:review.reviewText,
+                            reviewRating:review.ratingValue,
                             userId:review.userId,
                             concertId:review.concertId,
                             id:nanoid()

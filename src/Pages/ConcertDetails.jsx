@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
-import Skeleton from "./Skeleton";
+import Skeleton from "../components/Skeleton";
 import { useFetchConcertDetailsQuery } from "../store";
-import RenderConcertDetails from "./RenderConcertDetails";
+import RenderConcertDetails from "../components/RenderConcertDetails";
 
 function ConcertDetails() {
   const params = useParams();
