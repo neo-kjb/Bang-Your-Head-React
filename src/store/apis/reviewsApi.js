@@ -10,9 +10,7 @@ const reviewsApi=createApi({
     endpoints(builder){
         return{
             addReview:builder.mutation({
-                invalidatesTags: (result, error, review) => {
-                    console.log(review);
-                    return[{ type: 'review', id: review.id }]},
+                invalidatesTags: (result, error, review) => [{ type: 'review', id: review.concertId }],
 
                 query:(review)=>{
                     return{
@@ -30,6 +28,8 @@ const reviewsApi=createApi({
                 }
             }),
             removeReview:builder.mutation({
+                invalidatesTags: (result, error, review) => [{ type: 'review', id: review.id }],
+
                 query:(review)=>{
                     return{
                         url:`/reviews/${review.id}`,
@@ -43,7 +43,7 @@ const reviewsApi=createApi({
                     const tags=result.map((review)=>{
                         return{type:'review',id:review.id}
                     })
-                    tags.push({type:'concert', id:concert.id})
+                    tags.push({type:'review', id:concert.id})
                     return tags
                 },
                 query:(concert)=>{

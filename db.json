@@ -1,101 +1,12 @@
 {
   "users": [
     {
-      "email": "test@test.com",
-      "password": "$2a$10$KCBI3JLe1wcARIC.AjXCT.dLTOvcWwahKCuXFe8.TS9QFFbEU1H3K",
-      "name": "anas",
-      "id": "97OqiP8fB7pUyBvJL09HT"
-    },
-    {
-      "email": "anas@anas.com",
-      "password": "$2a$10$LkAJE.ZEatYd3aCIfqichOpGspOphegzK8LRQl/Ddzu6z0dXJcF02",
-      "name": "asasas",
-      "id": "k9nvGJZdBoWimXSjCCdJ9"
-    },
-    {
-      "email": "shdfgkhilgkfj@dvfbghkljkh.com",
-      "password": "$2a$10$HTlQnCB44snmb6FMMFRr5.V3kvLxB5cajLPHdBmP1rWBZEd5OKL1a",
-      "name": "watermelon",
-      "id": "yAoAgmdaxMG0mEbsR9IJT"
-    },
-    {
-      "email": "shdfkjgkgkhilgkfj@dvfbghkljkh.com",
-      "password": "$2a$10$qFEIA5uTq2/8PM2ggZIDuOgscUk2EVdo49fcxstdXtSMujvb5e87a",
-      "name": "",
-      "id": "KxrY7kAJQTcmWbxLFJXVO"
-    },
-    {
-      "email": "t@t.com",
-      "password": "$2a$10$OqRYD8Q90KbN3dL55PLMO.fDA/4TcE7FbWnEQhCFLZUiV6o/1Uf2a",
-      "name": "anas",
-      "id": "QVIJngB40F50q7_LF_yMT"
-    },
-    {
-      "email": "aa@aa.com",
-      "password": "$2a$10$37nM9jRdgnuNPNlmSVpCje.eLOh7I2oXd8jQAM.JtBsi5906tCd5C",
-      "name": "dfgadfg",
-      "id": "P4r_-S9c0e2mZHrLi_C5S"
-    },
-    {
-      "email": "d@d.com",
-      "password": "$2a$10$SJ/zKKfo/d8Q5H6Q1.GUZ.pHofsT7FKTLgRRs4xr4uQ6RX0X1EOG6",
-      "name": "hvjhv",
-      "id": "jKFeo-x9VQQBeb2fqpZht"
-    },
-    {
-      "email": "nn@n.com",
-      "password": "$2a$10$6mXxBAdRflhGb35NuKvO7.AOm2O52SZwYy7ZdPHiA.XZY4eqzTjN6",
-      "name": "a",
-      "id": "OOaccsHNOHS5L1dnL8df8"
-    },
-    {
-      "email": "g@g.com",
-      "password": "$2a$10$OBHO/QeMzXbBT./HK.nCZOcWk0h7JLBTV8PPr3h6LTKvO5uCuzvQK",
-      "name": "g",
-      "id": "PKpceziMECdpLeALHOjn4"
-    },
-    {
-      "email": "h@h.com",
-      "password": "$2a$10$H6N8qJO9WAsvW97KP.iNS.qF7Aqt0E1Hfj/1iCxXKoC0c149zC/Uq",
-      "name": "h",
-      "id": "BG6VW9fgb9m6BH8eqvK2z"
-    },
-    {
-      "email": "h@ljf.com",
-      "password": "$2a$10$A3YqKw/AXPoZ9q05npW43uMkUjmHaQdENHXcSA2yoX423ESgBET2K",
-      "name": "test",
-      "id": "b_jsYuoGOqVbqY9rGIZ9D"
-    },
-    {
-      "email": "d@h.com",
-      "password": "$2a$10$B1GNgH2GvKbbRnnOA6koyuTh5Pukd3fiX2Tc2WG1Z8cnejXIjkE/S",
-      "name": "h@h.com",
-      "id": "X0D9AYnS7ffHQOyIfCU05"
-    },
-    {
       "email": "zz@zz.com",
       "password": "$2a$10$S/FNh/Ea2G.wF3yCTeLPS.GBRp.7i9hj0S6rd1FT5NF/njoR18/gC",
       "name": "anas",
       "id": "o2CVOi9j5ajLXjt0rs8_s"
     },
-    {
-      "email": "gg@gg.com",
-      "password": "$2a$10$K/.RiM1eDSXtMN1gFspos.GpCdqXJQlvS6/zflD7TWI.JGgTK/McS",
-      "name": "ggggggggggggg",
-      "id": "n0ZK0unwa39l1S5bBF5jJ"
-    },
-    {
-      "email": "yy@yy.com",
-      "password": "$2a$10$ATHQ1uH2dc0HBVIDAX.n8.AA3sqlm2kCRt8F/y6n.mG/jQhx1gbcu",
-      "name": "yyy",
-      "id": "CaN8llpRlDOKYUnvfVU_7"
-    },
-    {
-      "email": "tt@tt.com",
-      "password": "$2a$10$iTv6BAetep4IHplljJs66eCxo2ZxRi5gpbGC11DUb.sjRwj3ZZGta",
-      "name": "watermelon",
-      "id": "QOctcwlsnY09HWyQMqZ4x"
-    },
+
     {
       "email": "vv@vv.com",
       "password": "$2a$10$Wrz4HF.pJbSqbncsI.GZ.OR91oKiirNPmDBsO2/SO2J6rvm7exWti",
@@ -103,58 +14,6 @@
       "id": "-ReYZEnj7-pcMCiN_J2Yw"
     }
   ],
-  "concerts": [
-    {
-      "title": "2",
-      "id": "sWp8MH2LsYPEk7WoktSOY",
-      "price": "2",
-      "description": "2",
-      "location": "2",
-      "imageUrl": "2",
-      "userId": "-ReYZEnj7-pcMCiN_J2Yw"
-    },
-    {
-      "title": "gfdgf",
-      "id": "Z5SjRt_yILaJANHE8YI8-",
-      "price": "23",
-      "description": "42",
-      "location": "fgd",
-      "imageUrl": "444",
-      "userId": "o2CVOi9j5ajLXjt0rs8_s"
-    }
-  ],
-  "reviews": [
-    {
-      "reviewText": "nhfjhgjhj",
-      "reviewRating": 3,
-      "userId": "o2CVOi9j5ajLXjt0rs8_s",
-      "userName": "anas",
-      "concertId": "sWp8MH2LsYPEk7WoktSOY",
-      "id": "oOHQL5yWygKRX8qYW61SQ"
-    },
-    {
-      "reviewText": "nhfjhgjhj",
-      "reviewRating": 3,
-      "userId": "o2CVOi9j5ajLXjt0rs8_s",
-      "userName": "anas",
-      "concertId": "sWp8MH2LsYPEk7WoktSOY",
-      "id": "EYBf2oAkc_JSayhP779hx"
-    },
-    {
-      "reviewText": "jhfgjh]]]]]]]]]",
-      "reviewRating": 1,
-      "userId": "o2CVOi9j5ajLXjt0rs8_s",
-      "userName": "anas",
-      "concertId": "sWp8MH2LsYPEk7WoktSOY",
-      "id": "6_Dz0Cf1ujG4sDFE_BTSg"
-    },
-    {
-      "reviewText": "kkkkkkkkkkkkk\n",
-      "reviewRating": 4,
-      "userId": "o2CVOi9j5ajLXjt0rs8_s",
-      "userName": "anas",
-      "concertId": "Z5SjRt_yILaJANHE8YI8-",
-      "id": "KLykHso8ysdL4rF-t0wFF"
-    }
-  ]
+  "concerts": [],
+  "reviews": []
 }
