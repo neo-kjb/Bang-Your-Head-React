@@ -1,20 +1,36 @@
 import { useState } from "react";
 import ReviweListItem from "./ReviweListItem";
+import { useSelector } from "react-redux";
+import { useAddReviewMutation } from "../store";
 
-function ReviewsForm() {
+function ReviewsForm({ concert }) {
   const [ratingValue, setRatingValue] = useState(0);
   const [reviewText, setReviewText] = useState("");
-
+  const userId = useSelector((state) => state.currentUser.currentUserId);
+  const [addReview, addReviewResults] = useAddReviewMutation();
   const handleReviewSubmit = (event) => {
+    if (!userId) {
+      return window.alert("Please login to add a review");
+    }
     event.preventDefault();
-    console.log("Review text:", reviewText);
-    console.log("Rating value:", ratingValue);
-    // Submit review data to backend or other logic here
+    const reviewData = {
+      reviewText,
+      ratingValue,
+      userId,
+      concertId: concert.id,
+    };
+    addReview(reviewData);
   };
+  if (addReviewResults.error) {
+    const confirm = window.confirm("Failed To Connect!! Reload the Page?");
+    if (confirm) {
+      window.location.reload();
+    }
+  }
   return (
     <>
       <form onSubmit={handleReviewSubmit}>
-        <label className="block mb-2 font-bold" for="review">
+        <label className="block mb-2 font-bold" htmlFor="review">
           Leave a review:
         </label>
         <textarea
