@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Form, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { setCurrentUser, useLoginUserMutation } from "../store";
 import { useDispatch } from "react-redux";
 
@@ -70,7 +70,7 @@ function Login() {
               </div>
             </div>
           )}
-          <Form method="POST" onSubmit={handleFormSubmit}>
+          <form method="POST" onSubmit={handleFormSubmit}>
             <div className="mt-4">
               <label
                 htmlFor="email"
@@ -115,7 +115,7 @@ function Login() {
                 Login
               </button>
             </div>
-          </Form>
+          </form>
         </div>
       </div>
     </div>

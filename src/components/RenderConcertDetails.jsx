@@ -1,12 +1,20 @@
 import { useNavigate } from "react-router-dom";
 import { useRemoveConcertMutation } from "../store";
+import { useSelector } from "react-redux";
 
 function RenderConcertDetails({ concert }) {
+  const currentUserId = useSelector((state) => state.currentUser.currentUserId);
   const navigate = useNavigate();
   const [removeConcert, removeConcertResults] = useRemoveConcertMutation();
+
+  const isAuthorized = concert.userId === currentUserId;
+
   const handleDeleteConcert = () => {
-    removeConcert(concert);
-    navigate("/concerts");
+    const confirm = window.confirm("Are you sure to remove the concert ?");
+    if (confirm) {
+      removeConcert(concert);
+      navigate("/concerts");
+    }
   };
   if (removeConcertResults.error) {
     const confirm = window.confirm("Failed To Connect!! Reload the Page?");
@@ -68,23 +76,25 @@ function RenderConcertDetails({ concert }) {
             </div>
           </div>
 
-          <div className="flex items-center justify-end mt-4">
-            <button
-              disabled={removeConcertResults.isLoading}
-              onClick={handleDeleteConcert}
-              type="submit"
-              className="inline-flex items-center px-4 py-2 ml-4 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-red-900 border border-transparent rounded-md active:bg-red-900 false"
-            >
-              Delete Concert
-            </button>
-            <button
-              onClick={() => navigate(`/concerts/${concert.id}/edit`)}
-              type="submit"
-              className="inline-flex items-center px-4 py-2 ml-4 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-900 border border-transparent rounded-md active:bg-gray-900 false"
-            >
-              Edit Concert
-            </button>
-          </div>
+          {isAuthorized && (
+            <div className="flex items-center justify-end mt-4">
+              <button
+                disabled={removeConcertResults.isLoading}
+                onClick={handleDeleteConcert}
+                type="submit"
+                className="inline-flex items-center px-4 py-2 ml-4 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-red-900 border border-transparent rounded-md active:bg-red-900 false"
+              >
+                Delete Concert
+              </button>
+              <button
+                onClick={() => navigate(`/concerts/${concert.id}/edit`)}
+                type="submit"
+                className="inline-flex items-center px-4 py-2 ml-4 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-900 border border-transparent rounded-md active:bg-gray-900 false"
+              >
+                Edit Concert
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>
