@@ -17,6 +17,7 @@ const reviewsApi=createApi({
                             reviewText:review.reviewText,
                             reviewRating:review.ratingValue,
                             userId:review.userId,
+                            userName:review.userName,
                             concertId:review.concertId,
                             id:nanoid()
                         }

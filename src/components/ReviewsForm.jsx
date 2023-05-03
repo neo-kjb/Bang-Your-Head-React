@@ -1,12 +1,13 @@
 import { useState } from "react";
-import ReviweListItem from "./ReviweListItem";
 import { useSelector } from "react-redux";
 import { useAddReviewMutation } from "../store";
+import ReviewsItems from "./ReviewsItems";
 
 function ReviewsForm({ concert }) {
   const [ratingValue, setRatingValue] = useState(0);
   const [reviewText, setReviewText] = useState("");
   const userId = useSelector((state) => state.currentUser.currentUserId);
+  const userName = useSelector((state) => state.currentUser.currentUserName);
   const [addReview, addReviewResults] = useAddReviewMutation();
   const handleReviewSubmit = (event) => {
     if (!userId) {
@@ -17,6 +18,7 @@ function ReviewsForm({ concert }) {
       reviewText,
       ratingValue,
       userId,
+      userName,
       concertId: concert.id,
     };
     addReview(reviewData);
@@ -107,7 +109,7 @@ function ReviewsForm({ concert }) {
       <div className="mt-4">
         <h2 className="text-lg font-bold mb-2">Reviews</h2>
         <ul>
-          <ReviweListItem />
+          <ReviewsItems concert={concert} />
         </ul>
       </div>
     </>
