@@ -6,9 +6,14 @@ const reviewsApi=createApi({
     baseQuery:fetchBaseQuery({
         baseUrl:'http://localhost:3005'
     }),
+    tagTypes:['review'],
     endpoints(builder){
         return{
             addReview:builder.mutation({
+                invalidatesTags: (result, error, review) => {
+                    console.log(review);
+                    return[{ type: 'concert', id: review.id }]},
+
                 query:(review)=>{
                     return{
                         url:'/reviews',
@@ -34,6 +39,13 @@ const reviewsApi=createApi({
                 }
             }),
             fetchReviews:builder.query({
+                providesTags:(result,error,concert)=>{
+                    const tags=result.map((review)=>{
+                        return{type:'review',id:review.id}
+                    })
+                    tags.push({type:'concert', id:concert.id})
+                    return tags
+                },
                 query:(concert)=>{
                     return{
                         url:'/reviews',
