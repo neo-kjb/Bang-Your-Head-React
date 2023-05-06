@@ -1,5 +1,6 @@
 import ReviewsForm from "./ReviewsForm";
 import ConcertDetailsForm from "./ConcertDetailsForm";
+import Map from "./Map";
 
 function RenderConcertDetails({ concert }) {
   return (
@@ -9,7 +10,7 @@ function RenderConcertDetails({ concert }) {
           <ConcertDetailsForm concert={concert} />
         </div>
         <div className="w-full md:w-1/2 p-4">
-          <p>------MAP-----</p>
+          <Map location={concert.location} />
           <ReviewsForm concert={concert} />
         </div>
       </div>
