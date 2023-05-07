@@ -14,3 +14,12 @@
   margin: 12px;
   border-radius: 4px;
 }
+
+.popup {
+  max-width: 200px;
+}
+
+.popupContent {
+  text-align: center;
+  font-family: "Open Sans", sans-serif;
+}

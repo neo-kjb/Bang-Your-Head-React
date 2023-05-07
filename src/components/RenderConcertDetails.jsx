@@ -1,6 +1,6 @@
 import ReviewsForm from "./ReviewsForm";
 import ConcertDetailsForm from "./ConcertDetailsForm";
-import Map from "./Map";
+import Map from "../map/Map";
 
 function RenderConcertDetails({ concert }) {
   return (

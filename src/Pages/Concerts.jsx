@@ -1,6 +1,7 @@
 import { useFetchConcertsQuery } from "../store";
 import RenderConcerts from "../components/RenderConcerts";
 import Skeleton from "../components/Skeleton";
+import IndexMap from "../map/IndexMap";
 
 function Concerts() {
   const { data, error, isLoading } = useFetchConcertsQuery();
@@ -15,9 +16,9 @@ function Concerts() {
       <RenderConcerts key={concert.id} concert={concert} />
     ));
   }
-
   return (
     <>
+      {data && <IndexMap concerts={data} />}
       <h1 className="text-xl mb-6">All Concerts</h1>
       <div>{content}</div>
     </>
