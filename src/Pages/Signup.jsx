@@ -34,7 +34,6 @@ function Signup() {
         navigate("/");
       })
       .catch((e) => {
-        console.log(e);
         if (e.error) {
           const confirm = window.confirm(
             "Failed To Connect!! Reload the Page?"

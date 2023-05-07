@@ -41,7 +41,6 @@ function NewConcert() {
     addConcert(concertData)
       .unwrap()
       .then((res) => {
-        console.log(res);
         navigate(`/concerts/${res.id}`);
       })
       .catch((e) => {
@@ -54,7 +53,6 @@ function NewConcert() {
           }
         }
       });
-    console.log(addConcertResults);
   };
   return (
     <div>

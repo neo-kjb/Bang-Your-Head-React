@@ -29,12 +29,8 @@ function ConcertDetailsForm({ concert }) {
   return (
     <>
       <div className="flex flex-col  min-h-screen pt-6 sm:justify-center sm:pt-0 bg-gray-50">
-        <div>
-          <img
-            src={concert.imageUrl}
-            alt="ConcertImage"
-            className="object-cover h-48 w-96"
-          />
+        <div className="w-full   mt-6 overflow-hidden sm:max-w-md sm:rounded-lg">
+          <img src={concert.imageUrl} alt="ConcertImage" />
         </div>
 
         <div className="w-full px-6 py-4 mt-6 overflow-hidden bg-white shadow-md sm:max-w-md sm:rounded-lg">

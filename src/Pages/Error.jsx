@@ -2,7 +2,6 @@ import { Link, useRouteError } from "react-router-dom";
 import MainNavigation from "../components/MainNavigation";
 function Error() {
   const error = useRouteError();
-  console.log(error);
 
   let message = "Something went wrong";
 

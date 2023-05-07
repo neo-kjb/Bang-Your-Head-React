@@ -20,8 +20,6 @@ function Login() {
     loginUser(userData)
       .unwrap()
       .then((res) => {
-        console.log(res);
-
         const token = res.accessToken;
         const currentUserData = {
           accessToken: token,

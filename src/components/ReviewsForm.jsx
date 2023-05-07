@@ -22,6 +22,8 @@ function ReviewsForm({ concert }) {
       concertId: concert.id,
     };
     addReview(reviewData);
+    setReviewText("");
+    setRatingValue(0);
   };
   if (addReviewResults.error) {
     const confirm = window.confirm("Failed To Connect!! Reload the Page?");

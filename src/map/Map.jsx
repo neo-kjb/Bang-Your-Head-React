@@ -17,7 +17,7 @@ function Map({ location }) {
         container: mapContainer.current,
         style: "mapbox://styles/mapbox/streets-v12",
         center: [res.lng, res.lat],
-        zoom: 9,
+        zoom: 8,
       });
       new mapboxgl.Marker().setLngLat([res.lng, res.lat]).addTo(map.current);
     });
