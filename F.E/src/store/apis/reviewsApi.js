@@ -48,11 +48,9 @@ const reviewsApi=createApi({
                 },
                 query:(concert)=>{
                     return{
-                        url:'/reviews',
+                        url:`/reviews/${concert.id}`,
                         method:'GET',
-                        params:{
-                            concertId:concert.id
-                        }
+
                     }
                 }
             })
