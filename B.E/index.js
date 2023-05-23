@@ -18,8 +18,8 @@ app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
-app.use('/',userRoutes)
-app.use(concertsRoutes)
+app.use(userRoutes)
+app.use('/concerts',concertsRoutes)
 app.use(reviewRoutes)
 
 app.listen(PORT,()=>console.log(`Server running on port ${PORT}`))

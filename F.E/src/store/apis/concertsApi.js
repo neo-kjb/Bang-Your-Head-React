@@ -52,23 +52,20 @@ const concertsApi=createApi({
                     }
                 }
             }),
-            fetchConcertDetails:builder.query({
-                providesTags:(result,error,concertId)=>{
-                  return  result
-                  ? [...result.map(({id}) => ({ type: 'concert', id:concertId })), 'concert']
-                  : ['concert']}
+            fetchConcertDetails: builder.query({
+                providesTags: (result, error, concertId) =>
+                  result
+                    ? [...result.map(({ id }) => ({ type: 'concert', id: concertId })), 'concert']
+                    : ['concert']
                 ,
-                query(concertId){
-                    return{
-                        url:'/concerts',
-                        method:'GET',
-                        params:{
-                            id:concertId
-                        }
-                
-                    }
-                }
-            }),
+
+                query(concertId) {
+                  return {
+                    url: `/concerts/${concertId}`,
+                    method: 'GET',
+                  };
+                },
+              }),
             editConcert:builder.mutation({
                 invalidatesTags: (result, error, concert) => [{ type: 'concert', id: concert.id }],
                 query(concert){
