@@ -12,9 +12,9 @@ router.get('/:id',concertsController.getConcertDetails);
 
 router.post('/', validation.createConcertValidation,concertsController.addConcert)
 
-router.delete('/:id') //del concert
+router.delete('/:id',concertsController.deleteConcert)
 
-router.patch('/:id') //edit concert
+router.patch('/:id',validation.editConcertValidation,concertsController.editConcert)
 
 
 module.exports=router
