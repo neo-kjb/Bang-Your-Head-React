@@ -22,4 +22,11 @@ app.use(userRoutes)
 app.use('/concerts',concertsRoutes)
 app.use(reviewRoutes)
 
+app.use((error,req,res,next)=>{
+    const status=error.status||500
+    const message=error.message||'Something Went Wrong!'
+    const data=error.data
+    res.status(status).json({message,data})
+}
+)
 app.listen(PORT,()=>console.log(`Server running on port ${PORT}`))

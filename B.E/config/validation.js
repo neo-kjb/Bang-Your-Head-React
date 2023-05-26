@@ -1,5 +1,7 @@
 const {body}=require('express-validator')
 
+const User = require('../models/users')
+
 
 module.exports.createConcertValidation=[
     body('title').trim().notEmpty().withMessage('Title is required'),
@@ -30,4 +32,18 @@ module.exports.createConcertValidation=[
       .trim()
       .notEmpty().withMessage('Image URL is required')
       .isURL().withMessage('Image URL must be a valid URL'),
+  ]
+
+
+  module.exports.signUpValidation=[
+    body('email').isEmail().withMessage('Please enter a valid email.').custom((val,{req})=>{
+      return User.findOne({email:val}).then(user=>{
+        if(user){
+          return Promise.reject('E-Mail address already exists!')
+        }
+      })
+    }).normalizeEmail(),
+    body('password').trim().isLength({min:8}),
+    body('name').trim().notEmpty(),
+    body('id').trim().notEmpty()
   ]

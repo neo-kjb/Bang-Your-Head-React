@@ -1,20 +1,20 @@
 const express = require('express')
 
 const router = express.Router()
-const concertsController=require('../controllers/concerts')
-const validation=require('../config/validation')
+const { createConcertValidation, editConcertValidation } = require('../config/validation');
+const { getAllConcerts,getConcertDetails,addConcert,deleteConcert,editConcert } = require('../controllers/concerts');
 
 
 
-router.get('/',concertsController.getAllConcerts);
+router.get('/',getAllConcerts);
 
-router.get('/:id',concertsController.getConcertDetails);
+router.get('/:id',getConcertDetails);
 
-router.post('/', validation.createConcertValidation,concertsController.addConcert)
+router.post('/', createConcertValidation,addConcert)
 
-router.delete('/:id',concertsController.deleteConcert)
+router.delete('/:id',deleteConcert)
 
-router.patch('/:id',validation.editConcertValidation,concertsController.editConcert)
+router.patch('/:id',editConcertValidation,editConcert)
 
 
 module.exports=router
