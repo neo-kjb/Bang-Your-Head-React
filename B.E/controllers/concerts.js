@@ -43,7 +43,8 @@ module.exports.addConcert=async (req,res,next)=>{
 
       error.data = errors.array().map((err) => ({ [err.path]: err.msg }));
 
-      throw error
+      next(error)
+      return
     }
 
 

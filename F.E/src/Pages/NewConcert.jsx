@@ -68,6 +68,24 @@ function NewConcert() {
           <h1 className="text-xl">Add New Concert</h1>
         </div>
 
+        {addConcertResults.error?.status === 422 && (
+          <div
+            className="w-full px-6 py-4 mt-6 sm:max-w-md sm:rounded-lg"
+            role="alert"
+          >
+            <div className="bg-red-500 w-full text-white font-bold rounded-t px-4 py-2">
+              Create Concert Failed!
+            </div>
+            <div className="border border-t-0 border-red-400 rounded-b bg-red-100 px-4 py-3 text-red-700">
+              <ul className="list-disc list-inside">
+                {addConcertResults.error.data.data.map((error, index) => (
+                  <li key={index}>{Object.values(error)[0]}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        )}
+
         {(addConcertResults.error?.status === 500 ||
           addConcertResults.error?.status === 401) && (
           <div
@@ -78,7 +96,7 @@ function NewConcert() {
               Create Concert Failed!
             </div>
             <div className="border border-t-0 border-red-400 rounded-b bg-red-100 px-4 py-3 text-red-700">
-              <p>Not Authorized</p>
+              <p>Not Authorized, Please Sign In!</p>
             </div>
           </div>
         )}

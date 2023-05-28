@@ -10,7 +10,7 @@ module.exports.createConcertValidation=[
       .trim()
       .notEmpty().withMessage('Price is required')
       .isNumeric().withMessage('Price must be a number'),
-    body('userId').trim().notEmpty().withMessage('UserID is required'),
+    body('userId').trim().notEmpty().withMessage('Please sign in'),
     body('description').trim().notEmpty().withMessage('Description is required'),
     body('location').trim().notEmpty().withMessage('Location is required'),
     body('imageUrl')
