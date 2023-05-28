@@ -2,11 +2,8 @@ import React, { useState } from "react";
 import { Transition } from "@headlessui/react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { getAuthToken } from "../utils/getAuthToken";
-import { useDispatch } from "react-redux";
-import { clearCurrentUser } from "../store";
 
 function MainNavigation() {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const token = getAuthToken();
 
@@ -15,7 +12,6 @@ function MainNavigation() {
     const confirm = window.confirm("Are You Sure ?");
     if (confirm) {
       localStorage.removeItem("token");
-      dispatch(clearCurrentUser());
       return navigate("/");
     } else {
       return;

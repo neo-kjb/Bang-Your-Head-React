@@ -40,6 +40,9 @@ const concertsApi=createApi({
                 query(concert){
                     return{
                         url:`/concerts/${concert.id}`,
+                        headers:{
+                            Authorization:'Bearer '+ token
+                        },
                         method:'DELETE'
                     }
                 }
@@ -78,6 +81,9 @@ const concertsApi=createApi({
                     return{
                         url:`/concerts/${concert.id}`,
                         method:'PATCH',
+                        headers:{
+                            Authorization:'Bearer '+ token
+                        },
                         body:{
                             title:concert.title,
                             price:concert.price,

@@ -20,7 +20,9 @@ module.exports.register=async(req,res,next)=>{
         const hashedPw=await bcrypt.hash(password,12)
         const user=new User({name,id,email,password:hashedPw})
         await user.save()
-        res.status(201).json({accessToken:'jhgjg',user:{id,email,name}})
+        const accessToken=jwt.sign({email:loadedUser.email,id:loadedUser.id,name:loadedUser.name},'@#}†',{expiresIn:'1h'})
+
+        res.status(201).json({accessToken,user:{id,email,name}})
     } catch (error) {
         if(!error.status){
             error.status=500
@@ -55,6 +57,34 @@ module.exports.login=async (req,res,next)=>{
 
         const accessToken=jwt.sign({email:loadedUser.email,id:loadedUser.id,name:loadedUser.name},'@#}†',{expiresIn:'1h'})
         res.status(200).send({accessToken,user:{id:loadedUser.id,email:loadedUser.email,name:loadedUser.name}})
+
+    } catch (error) {
+        if(!error.status){
+        error.status=500
+        }
+        next(error)
+    }
+}
+
+
+module.exports.auth=async(req,res,next)=>{
+    const {userId}=req
+    console.log(userId);
+    try {
+        const user=await User.findOne({id:userId})
+        if (!user) {
+            const error = new Error('User not found');
+            error.status = 404;
+            next(error);
+            return
+          }
+
+          res.status(200).json({
+            currentUserId:user.id,
+            currentUserEmail:user.email,
+            currentUserName:user.name
+        })
+      
 
     } catch (error) {
         if(!error.status){

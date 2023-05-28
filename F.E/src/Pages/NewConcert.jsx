@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { useAddConcertMutation } from "../store";
-import { useSelector } from "react-redux";
+import { useAddConcertMutation, useGetCurrentUserQuery } from "../store";
 import { useNavigate } from "react-router-dom";
 import { getAuthToken } from "../utils/getAuthToken";
 
@@ -12,9 +11,13 @@ function NewConcert() {
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
   const [imageUrl, setImageUrl] = useState("");
-  const { currentUserId } = useSelector((state) => state.currentUser);
+
+  const { data } = useGetCurrentUserQuery();
+  let currentUserId;
+  if (data) {
+    currentUserId = data.currentUserId;
+  }
   const [addConcert, addConcertResults] = useAddConcertMutation();
-  const [authErr, setAuthErr] = useState(false);
   if (!token) {
     return (
       <div className="flex flex-col items-center">

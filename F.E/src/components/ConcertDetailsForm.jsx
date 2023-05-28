@@ -1,14 +1,17 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { useRemoveConcertMutation } from "../store";
+import { useGetCurrentUserQuery, useRemoveConcertMutation } from "../store";
 import { useNavigate } from "react-router-dom";
 
 function ConcertDetailsForm({ concert }) {
   const navigate = useNavigate();
 
-  const currentUserId = useSelector((state) => state.currentUser.currentUserId);
+  const { data } = useGetCurrentUserQuery();
 
-  const isAuthorized = concert.userId === currentUserId;
+  let isAuthorized;
+  if (data) {
+    const { currentUserId } = data;
+
+    isAuthorized = concert.userId === currentUserId;
+  }
 
   const [removeConcert, removeConcertResults] = useRemoveConcertMutation();
 

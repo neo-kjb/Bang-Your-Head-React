@@ -1,10 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { setCurrentUser, useAddUserMutation } from "../store";
-import { useDispatch } from "react-redux";
+import { useAddUserMutation } from "../store";
 
 function Signup() {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [addUser, addUserResults] = useAddUserMutation();
   const [name, setName] = useState("");
@@ -22,20 +20,11 @@ function Signup() {
     addUser(userData)
       .unwrap()
       .then((res) => {
-        console.log(res);
         const token = res.accessToken;
-        const currentUserData = {
-          accessToken: token,
-          id: res.user.id,
-          email: res.user.email,
-          name: res.user.name,
-        };
-        dispatch(setCurrentUser(currentUserData));
         localStorage.setItem("token", token);
         navigate("/");
       })
       .catch((e) => {
-        console.log(e.data.data[0].email);
         if (e.status === "FETCH_ERROR") {
           const confirm = window.confirm(
             "Failed To Connect!! Reload the Page?"
@@ -60,7 +49,7 @@ function Signup() {
         }
       });
   };
-  console.log(errMsg);
+
   return (
     <div>
       <div className="flex flex-col items-center min-h-screen pt-6 sm:justify-center sm:pt-0 bg-gray-50">

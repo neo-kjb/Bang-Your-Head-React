@@ -1,10 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { setCurrentUser, useLoginUserMutation } from "../store";
-import { useDispatch } from "react-redux";
+import { useLoginUserMutation } from "../store";
 
 function Login() {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [loginUser, loginUserResults] = useLoginUserMutation();
   const [password, setPassword] = useState("");
@@ -21,14 +19,6 @@ function Login() {
       .unwrap()
       .then((res) => {
         const token = res.accessToken;
-        const currentUserData = {
-          accessToken: token,
-          id: res.user.id,
-          email: res.user.email,
-          name: res.user.name,
-        };
-
-        dispatch(setCurrentUser(currentUserData));
         localStorage.setItem("token", token);
         navigate("/");
       })

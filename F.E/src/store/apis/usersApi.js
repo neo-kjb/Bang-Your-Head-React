@@ -1,6 +1,11 @@
 import { nanoid } from '@reduxjs/toolkit'
 import {createApi, fetchBaseQuery,} from '@reduxjs/toolkit/query/react'
 
+
+import { getAuthToken } from '../../utils/getAuthToken'
+const token=getAuthToken()
+
+
 const usersApi=createApi({
     reducerPath:'users',
     baseQuery:fetchBaseQuery({
@@ -33,10 +38,21 @@ const usersApi=createApi({
                         },
                     }
                 }
+            }),
+            getCurrentUser:builder.query({
+                query:()=>{
+                    return{
+                        url:'/auth',
+                        method:'GET',
+                        headers:{
+                            Authorization:'Bearer '+ token
+                        }
+                    }
+                }
             })
         }
     }
 })
 
 export {usersApi}
-export const {useAddUserMutation,useLoginUserMutation}=usersApi
+export const {useAddUserMutation,useLoginUserMutation,useGetCurrentUserQuery}=usersApi
