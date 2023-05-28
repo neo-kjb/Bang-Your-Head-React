@@ -102,12 +102,28 @@ module.exports.editConcert=async(req,res,next)=>{
 
 module.exports.deleteConcert=async(req,res,next)=>{
     const concertId=req.params.id
+
+    const userId=req.userId
+
+    if(!userId){
+      const error = new Error('Not Authorized!')
+      error.status=401
+      next(error)
+      return
+    }
     try {
         const concert=await Concert.findOne({id:concertId})
         if(!concert){
             const error = new Error('Could not find concert.')
             error.status=404
             throw error
+          }
+
+          if(!concert.userId===userId){
+            const error = new Error('Not Authorized!')
+            error.status=401
+            next(error)
+            return
           }
 
           await Concert.findOneAndRemove({id:concertId})

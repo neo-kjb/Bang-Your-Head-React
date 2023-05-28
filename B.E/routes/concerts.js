@@ -13,9 +13,9 @@ router.get('/:id',getConcertDetails);
 
 router.post('/', isAuth,createConcertValidation,addConcert)
 
-router.delete('/:id',deleteConcert)
+router.delete('/:id',isAuth,deleteConcert)
 
-router.patch('/:id',editConcertValidation,editConcert)
+router.patch('/:id',isAuth,editConcertValidation,editConcert)
 
 
 module.exports=router
