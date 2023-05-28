@@ -14,6 +14,7 @@ function NewConcert() {
   const [imageUrl, setImageUrl] = useState("");
   const { currentUserId } = useSelector((state) => state.currentUser);
   const [addConcert, addConcertResults] = useAddConcertMutation();
+  const [authErr, setAuthErr] = useState(false);
   if (!token) {
     return (
       <div className="flex flex-col items-center">
@@ -41,10 +42,12 @@ function NewConcert() {
     addConcert(concertData)
       .unwrap()
       .then((res) => {
-        navigate(`/concerts/${res.id}`);
+        console.log(res);
+        navigate(`/concerts/${res.concert.id}`);
       })
       .catch((e) => {
-        if (e.error) {
+        if (e.status === "FETCH_ERROR") {
+          console.log(e);
           const confirm = window.confirm(
             "Failed To Connect!! Reload the Page?"
           );
@@ -54,12 +57,28 @@ function NewConcert() {
         }
       });
   };
+
   return (
     <div>
       <div className="flex flex-col items-center min-h-screen pt-6 sm:justify-center sm:pt-0 bg-gray-50">
         <div>
           <h1 className="text-xl">Add New Concert</h1>
         </div>
+
+        {(addConcertResults.error?.status === 500 ||
+          addConcertResults.error?.status === 401) && (
+          <div
+            className="w-full px-6 py-4 mt-6  sm:max-w-md sm:rounded-lg"
+            role="alert"
+          >
+            <div className="bg-red-500 w-full text-white font-bold rounded-t px-4 py-2">
+              Create Concert Failed!
+            </div>
+            <div className="border border-t-0 border-red-400 rounded-b bg-red-100 px-4 py-3 text-red-700">
+              <p>Not Authorized</p>
+            </div>
+          </div>
+        )}
 
         <div className="w-full px-6 py-4 mt-6 overflow-hidden bg-white shadow-md sm:max-w-md sm:rounded-lg">
           <form onSubmit={addConcertHandler}>

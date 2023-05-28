@@ -1,5 +1,8 @@
 import { nanoid } from '@reduxjs/toolkit'
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
+import { getAuthToken } from '../../utils/getAuthToken'
+
+const token = getAuthToken()
 
 const concertsApi=createApi({
     reducerPath:'concerts',
@@ -16,6 +19,9 @@ const concertsApi=createApi({
                     return{
                         url:'/concerts',
                         method:'POST',
+                        headers:{
+                            Authorization:'Bearer '+ token
+                        },
                         body:{
                             title:concert.title,
                             id:nanoid(),
