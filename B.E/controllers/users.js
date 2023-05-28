@@ -69,7 +69,6 @@ module.exports.login=async (req,res,next)=>{
 
 module.exports.auth=async(req,res,next)=>{
     const {userId}=req
-    console.log(userId);
     try {
         const user=await User.findOne({id:userId})
         if (!user) {

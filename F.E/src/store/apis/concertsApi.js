@@ -72,6 +72,9 @@ const concertsApi=createApi({
                   return {
                     url: `/concerts/${concertId}`,
                     method: 'GET',
+                    headers:{
+                        Authorization:'Bearer '+ token
+                    },
                   };
                 },
               }),

@@ -1,13 +1,17 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { useFetchConcertDetailsQuery } from "../store";
+import { useFetchConcertDetailsQuery, useGetCurrentUserQuery } from "../store";
 import Skeleton from "../components/Skeleton";
 import EditConcertForm from "../components/EditConcertForm";
-import { useSelector } from "react-redux";
 
 function EditConcert() {
   const navigate = useNavigate();
 
-  const currentUserId = useSelector((state) => state.currentUser.currentUserId);
+  const { data: userData } = useGetCurrentUserQuery();
+
+  let currentUserId;
+  if (userData) {
+    currentUserId = userData.currentUserId;
+  }
   const { concertId } = useParams();
 
   const { data, error, isLoading } = useFetchConcertDetailsQuery(concertId);

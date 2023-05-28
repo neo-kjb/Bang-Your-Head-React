@@ -1,13 +1,12 @@
 const Concert=require('../models/concerts')
 
-const{validationResult}=require('express-validator')
+const{validationResult}=require('express-validator');
 
 
 module.exports.getAllConcerts= async (req, res,next) => {
     try {
       const concerts = await Concert.find({});
       res.status(200).json(concerts);
-      console.log('hh');
     } catch (error) {
       console.error(error);
       error.status(500)
@@ -25,7 +24,6 @@ module.exports.getConcertDetails= async (req, res,next) => {
         error.status=404
         throw error
       }
-      console.log(concert);
       res.status(200).json([concert]);
     } catch (error) {
       if (!error.status) {
@@ -39,7 +37,6 @@ module.exports.getConcertDetails= async (req, res,next) => {
 
 module.exports.addConcert=async (req,res,next)=>{
     const errors=validationResult(req)
-    console.log(errors); 
     if(!errors.isEmpty()){
       const error=new Error('Validation failed!')
       error.status=422
@@ -69,29 +66,48 @@ module.exports.addConcert=async (req,res,next)=>{
 
 
 module.exports.editConcert=async(req,res,next)=>{
+  
     const concertId=req.params.id
+    const userId=req.userId
+console.log(userId);
+    if(!userId){
+      const error = new Error('Not Authorized!')
+      error.status=401
+      next(error)
+      return
+    }
+
     const errors=validationResult(req)
-    console.log(errors); 
     if(!errors.isEmpty()){
       const error=new Error('Validation failed!')
       error.status=422
-
       error.data = errors.array().map((err) => ({ [err.path]: err.msg }));
-
       throw error
     }
+
     const{title,price,location,description,imageUrl}=req.body
 
     try {
-        const concert = await Concert.findOneAndUpdate({ id: concertId },{title,price,location,description,imageUrl},{new:true});
+
+        const concert=await Concert.findOne({id:concertId})
+
+        // const concert = 
   
         if(!concert){
           const error = new Error('Could not find concert.')
           error.status=404
-          throw error
+          next(error)
+          return
         }
-        console.log(concert);
-        res.status(200).json([concert]);
+        if(concert.userId!==userId){
+          const error = new Error('Not Authorized!')
+          error.status=401
+          next(error)
+          return
+        }
+
+        const updatedConcert=await Concert.findOneAndUpdate({ id: concertId },{title,price,location,description,imageUrl},{new:true});
+        res.status(200).json([updatedConcert]);
       } catch (error) {
         if (!error.status) {
             error.status=500
