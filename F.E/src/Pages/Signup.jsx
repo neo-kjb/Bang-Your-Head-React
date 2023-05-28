@@ -10,7 +10,7 @@ function Signup() {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const [errMsg, setErrMsg] = useState("");
+  const [errMsg, setErrMsg] = useState();
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
@@ -22,6 +22,7 @@ function Signup() {
     addUser(userData)
       .unwrap()
       .then((res) => {
+        console.log(res);
         const token = res.accessToken;
         const currentUserData = {
           accessToken: token,
@@ -34,7 +35,8 @@ function Signup() {
         navigate("/");
       })
       .catch((e) => {
-        if (e.error) {
+        console.log(e.data.data[0].email);
+        if (e.status === "FETCH_ERROR") {
           const confirm = window.confirm(
             "Failed To Connect!! Reload the Page?"
           );
@@ -42,10 +44,23 @@ function Signup() {
             window.location.reload();
           }
         }
-        setErrMsg(e.data);
+        if (e.status === 422) {
+          if (e.data.data[0].email && e.data.data[1]?.password) {
+            return setErrMsg([
+              { emailErr: e.data.data[0].email },
+              { passwordErr: e.data.data[1].password },
+            ]);
+          }
+          if (e.data.data[0].email) {
+            setErrMsg([{ emailErr: e.data.data[0].email }]);
+          }
+          if (e.data.data[0].password) {
+            setErrMsg([{ passwordErr: e.data.data[0].password }]);
+          }
+        }
       });
   };
-
+  console.log(errMsg);
   return (
     <div>
       <div className="flex flex-col items-center min-h-screen pt-6 sm:justify-center sm:pt-0 bg-gray-50">
@@ -63,7 +78,9 @@ function Signup() {
                 Regester Failed!
               </div>
               <div className="border border-t-0 border-red-400 rounded-b bg-red-100 px-4 py-3 text-red-700">
-                <p>{errMsg}</p>
+                {errMsg.map((error, index) => (
+                  <li key={index}>{Object.values(error)[0]}</li>
+                ))}
               </div>
             </div>
           )}

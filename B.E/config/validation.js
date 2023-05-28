@@ -43,7 +43,7 @@ module.exports.createConcertValidation=[
         }
       })
     }).normalizeEmail(),
-    body('password').trim().isLength({min:8}),
+    body('password').trim().isLength({min:8}).withMessage('Password must be more than 8 characters'),
     body('name').trim().notEmpty(),
     body('id').trim().notEmpty()
   ]
