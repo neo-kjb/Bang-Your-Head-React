@@ -5,7 +5,7 @@ module.exports.isAuth=(req,res,next)=>{
     if(!authHeader){
         const error=new Error('Not Authenticated')
         error.status=401
-        throw error
+        next(error)
     }
     const token=authHeader.split(' ')[1]
     let decodedToken
@@ -13,12 +13,12 @@ module.exports.isAuth=(req,res,next)=>{
         decodedToken=jwt.verify(token,'@#}†')
     } catch (error) {
         error.status=500
-        throw error
+        next(error)
     }
     if(!decodedToken){
         const error= new Error('Not Authenticated.')
         error.status=401
-        throw error
+        next(error)
     }
     req.userId=decodedToken.id
     next()

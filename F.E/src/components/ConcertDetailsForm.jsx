@@ -1,17 +1,22 @@
 import { useGetCurrentUserQuery, useRemoveConcertMutation } from "../store";
 import { useNavigate } from "react-router-dom";
+import { getAuthToken } from "../utils/getAuthToken";
+import { useState, useEffect } from "react";
 
 function ConcertDetailsForm({ concert }) {
   const navigate = useNavigate();
+  const token = getAuthToken();
+  const [isAuthorized, setIsAuthorized] = useState(false);
 
   const { data } = useGetCurrentUserQuery();
+  console.log(data);
 
-  let isAuthorized;
-  if (data) {
-    const { currentUserId } = data;
-
-    isAuthorized = concert.userId === currentUserId;
-  }
+  useEffect(() => {
+    if (data) {
+      const { currentUserId } = data;
+      setIsAuthorized(concert.userId === currentUserId && token);
+    }
+  }, [data, concert.userId, token]);
 
   const [removeConcert, removeConcertResults] = useRemoveConcertMutation();
 

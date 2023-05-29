@@ -2,16 +2,19 @@ import React, { useState } from "react";
 import { Transition } from "@headlessui/react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { getAuthToken } from "../utils/getAuthToken";
+import { useLogoutMutation } from "../store";
 
 function MainNavigation() {
   const navigate = useNavigate();
   const token = getAuthToken();
+  const [logoutUser] = useLogoutMutation();
 
   const [isOpen, setIsOpen] = useState(false);
   const logoutHandler = () => {
     const confirm = window.confirm("Are You Sure ?");
     if (confirm) {
       localStorage.removeItem("token");
+      logoutUser();
       return navigate("/");
     } else {
       return;

@@ -19,6 +19,6 @@ const store =configureStore({
 setupListeners(store.dispatch)
 
 export {store}
-export {useAddUserMutation,useLoginUserMutation,useGetCurrentUserQuery}from './apis/usersApi'
+export {useAddUserMutation,useLoginUserMutation,useGetCurrentUserQuery,useLogoutMutation}from './apis/usersApi'
 export {useAddReviewMutation,useFetchReviewsQuery,useRemoveReviewMutation}from './apis/reviewsApi'
 export {useAddConcertMutation,useFetchConcertDetailsQuery,useFetchConcertsQuery,useRemoveConcertMutation,useEditConcertMutation}from'./apis/concertsApi'

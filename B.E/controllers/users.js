@@ -20,7 +20,7 @@ module.exports.register=async(req,res,next)=>{
         const hashedPw=await bcrypt.hash(password,12)
         const user=new User({name,id,email,password:hashedPw})
         await user.save()
-        const accessToken=jwt.sign({email:loadedUser.email,id:loadedUser.id,name:loadedUser.name},'@#}†',{expiresIn:'1h'})
+        const accessToken=jwt.sign({email,id,name},'@#}†',{expiresIn:'1h'})
 
         res.status(201).json({accessToken,user:{id,email,name}})
     } catch (error) {
@@ -91,4 +91,9 @@ module.exports.auth=async(req,res,next)=>{
         }
         next(error)
     }
+}
+
+
+module.exports.logout=(req,res)=>{
+    res.json({message:'Logout Successful'})
 }

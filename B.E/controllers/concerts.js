@@ -83,7 +83,8 @@ console.log(userId);
       const error=new Error('Validation failed!')
       error.status=422
       error.data = errors.array().map((err) => ({ [err.path]: err.msg }));
-      throw error
+      next(error)
+      return
     }
 
     const{title,price,location,description,imageUrl}=req.body
@@ -92,7 +93,6 @@ console.log(userId);
 
         const concert=await Concert.findOne({id:concertId})
 
-        // const concert = 
   
         if(!concert){
           const error = new Error('Could not find concert.')

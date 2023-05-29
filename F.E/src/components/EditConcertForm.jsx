@@ -1,19 +1,20 @@
 import { useNavigate } from "react-router-dom";
 import { useEditConcertMutation } from "../store";
+import { useState } from "react";
 
 function EditConcertForm({ concert }) {
   const navigate = useNavigate();
+
+  const [title, setTitle] = useState(concert.title);
+  const [price, setPrice] = useState(concert.price);
+  const [description, setDescription] = useState(concert.description);
+  const [location, setLocation] = useState(concert.location);
+  const [imageUrl, setImageUrl] = useState(concert.imageUrl);
 
   const [editConcert, editConcertResults] = useEditConcertMutation();
 
   const handleEditConcert = (e) => {
     e.preventDefault();
-
-    const title = e.target[0].value;
-    const location = e.target[1].value;
-    const price = e.target[2].value;
-    const description = e.target[3].value;
-    const imageUrl = e.target[4].value;
 
     const editedData = {
       ...concert,
@@ -25,10 +26,13 @@ function EditConcertForm({ concert }) {
     };
 
     editConcert(editedData);
-    navigate(`/concerts/${concert.id}`);
   };
 
-  if (editConcertResults.error) {
+  console.log(editConcertResults);
+  if (editConcertResults.status === "fulfilled") {
+    navigate(`/concerts/${concert.id}`);
+  }
+  if (editConcertResults.error?.status === "FETCH_ERROR") {
     const confirm = window.confirm("Failed To Connect!! Reload the Page?");
     if (confirm) {
       window.location.reload();
@@ -41,6 +45,23 @@ function EditConcertForm({ concert }) {
         <div>
           <h1 className="text-xl">{`Edit ${concert.title} Concert`}</h1>
         </div>
+        {editConcertResults.error?.status === 422 && (
+          <div
+            className="w-full px-6 py-4 mt-6 sm:max-w-md sm:rounded-lg"
+            role="alert"
+          >
+            <div className="bg-red-500 w-full text-white font-bold rounded-t px-4 py-2">
+              Edit Concert Failed!
+            </div>
+            <div className="border border-t-0 border-red-400 rounded-b bg-red-100 px-4 py-3 text-red-700">
+              <ul className="list-disc list-inside">
+                {editConcertResults.error.data.data.map((error, index) => (
+                  <li key={index}>{Object.values(error)[0]}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        )}
 
         <div className="w-full px-6 py-4 mt-6 overflow-hidden bg-white shadow-md sm:max-w-md sm:rounded-lg">
           <form onSubmit={handleEditConcert}>
@@ -54,7 +75,8 @@ function EditConcertForm({ concert }) {
               <div className="flex flex-col items-start">
                 <input
                   required
-                  defaultValue={concert.title}
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
                   type="text"
                   name="title"
                   className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
@@ -71,7 +93,8 @@ function EditConcertForm({ concert }) {
               <div className="flex flex-col items-start">
                 <input
                   required
-                  defaultValue={concert.location}
+                  value={location}
+                  onChange={(e) => setLocation(e.target.value)}
                   type="text"
                   name="price"
                   className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
@@ -88,7 +111,8 @@ function EditConcertForm({ concert }) {
               <div className="flex flex-col items-start">
                 <input
                   required
-                  defaultValue={concert.price}
+                  value={price}
+                  onChange={(e) => setPrice(e.target.value)}
                   type="number"
                   name="price"
                   className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
@@ -105,7 +129,8 @@ function EditConcertForm({ concert }) {
               <div className="flex flex-col items-start">
                 <textarea
                   required
-                  defaultValue={concert.description}
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
                   type="text"
                   name="description"
                   className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
@@ -122,7 +147,8 @@ function EditConcertForm({ concert }) {
               <div className="flex flex-col items-start">
                 <input
                   required
-                  defaultValue={concert.imageUrl}
+                  value={imageUrl}
+                  onChange={(e) => setImageUrl(e.target.value)}
                   type="text"
                   name="imageUrl"
                   className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"

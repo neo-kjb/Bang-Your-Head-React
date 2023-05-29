@@ -14,6 +14,7 @@ const usersApi=createApi({
     endpoints(builder){
         return{
             addUser:builder.mutation({
+                invalidatesTags:()=>['user'],
                 query:(user)=>{
                     return{
                         url:'/users',
@@ -28,6 +29,8 @@ const usersApi=createApi({
                 }
             }),
             loginUser:builder.mutation({
+                invalidatesTags:()=>['user'],
+
                 query:(user)=>{
                     return{
                         url:'/login',
@@ -40,19 +43,30 @@ const usersApi=createApi({
                 }
             }),
             getCurrentUser:builder.query({
+                providesTags:()=>['user'],
                 query:()=>{
                     return{
                         url:'/auth',
                         method:'GET',
                         headers:{
-                            Authorization:'Bearer '+ token
+                            Authorization:'Bearer '+ getAuthToken()
                         }
                     }
                 }
-            })
+            }),
+            logout: builder.mutation({
+                invalidatesTags: () => ['user'],
+                query: () => ({
+                  url: '/logout',
+                  method: 'POST',
+                  headers: {
+                    Authorization: 'Bearer ' + getAuthToken(),
+                  },
+                }),
+              })
         }
     }
 })
 
 export {usersApi}
-export const {useAddUserMutation,useLoginUserMutation,useGetCurrentUserQuery}=usersApi
+export const {useAddUserMutation,useLoginUserMutation,useGetCurrentUserQuery,useLogoutMutation}=usersApi
