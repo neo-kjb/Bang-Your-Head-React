@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useEditConcertMutation } from "../store";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function EditConcertForm({ concert }) {
   const navigate = useNavigate();
@@ -28,10 +28,12 @@ function EditConcertForm({ concert }) {
     editConcert(editedData);
   };
 
-  console.log(editConcertResults);
-  if (editConcertResults.status === "fulfilled") {
-    navigate(`/concerts/${concert.id}`);
-  }
+  useEffect(() => {
+    if (editConcertResults.status === "fulfilled") {
+      navigate(`/concerts/${concert.id}`);
+    }
+  }, [editConcertResults.status, concert.id, navigate]);
+
   if (editConcertResults.error?.status === "FETCH_ERROR") {
     const confirm = window.confirm("Failed To Connect!! Reload the Page?");
     if (confirm) {
