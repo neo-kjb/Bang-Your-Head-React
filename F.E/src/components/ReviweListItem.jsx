@@ -1,9 +1,19 @@
-import { useSelector } from "react-redux";
-import { useRemoveReviewMutation } from "../store";
+import { useEffect, useState } from "react";
+import { useGetCurrentUserQuery, useRemoveReviewMutation } from "../store";
+import { getAuthToken } from "../utils/getAuthToken";
 
 function ReviweListItem({ review }) {
-  const { currentUserId } = useSelector((state) => state.currentUser);
-  const isAuthorized = review.userId === currentUserId;
+  const token = getAuthToken();
+  const [isAuthorized, setIsAuthorized] = useState(false);
+
+  const { data } = useGetCurrentUserQuery();
+
+  useEffect(() => {
+    if (data) {
+      const { currentUserId } = data;
+      setIsAuthorized(review.userId === currentUserId && token);
+    }
+  }, [data, review.userId, token]);
   const stars = "⭐️".repeat(review.reviewRating);
   const [removeReview, removeReviewResults] = useRemoveReviewMutation();
   const deleteReviewHandler = () => {

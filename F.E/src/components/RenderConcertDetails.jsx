@@ -11,7 +11,7 @@ function RenderConcertDetails({ concert }) {
         </div>
         <div className="w-full md:w-1/2 p-4">
           <Map location={concert.location} />
-          {/* <ReviewsForm concert={concert} /> */}
+          <ReviewsForm concert={concert} />
         </div>
       </div>
     </div>

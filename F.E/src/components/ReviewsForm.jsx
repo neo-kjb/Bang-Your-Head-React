@@ -1,13 +1,17 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
-import { useAddReviewMutation } from "../store";
+import { useAddReviewMutation, useGetCurrentUserQuery } from "../store";
 import ReviewsItems from "./ReviewsItems";
 
 function ReviewsForm({ concert }) {
   const [ratingValue, setRatingValue] = useState(0);
   const [reviewText, setReviewText] = useState("");
-  const userId = useSelector((state) => state.currentUser.currentUserId);
-  const userName = useSelector((state) => state.currentUser.currentUserName);
+  const { data } = useGetCurrentUserQuery();
+  let userId;
+  let userName;
+  if (data) {
+    userId = data.currentUserId;
+    userName = data.currentUserName;
+  }
   const [addReview, addReviewResults] = useAddReviewMutation();
   const handleReviewSubmit = (event) => {
     if (!userId) {

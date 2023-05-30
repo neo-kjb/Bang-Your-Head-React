@@ -22,7 +22,8 @@ module.exports.getConcertDetails= async (req, res,next) => {
       if(!concert){
         const error = new Error('Could not find concert.')
         error.status=404
-        throw error
+        next(error)
+        return
       }
       res.status(200).json([concert]);
     } catch (error) {
@@ -47,8 +48,17 @@ module.exports.addConcert=async (req,res,next)=>{
       return
     }
 
+    const authUserId=req.userId
+
 
     const{title,id,price,userId,description,location,imageUrl}=req.body
+
+    if(authUserId!==userId){
+      const error = new Error('Not Authorized!')
+      error.status=401
+      next(error)
+      return
+    }
 
 
     try {
@@ -133,7 +143,8 @@ module.exports.deleteConcert=async(req,res,next)=>{
         if(!concert){
             const error = new Error('Could not find concert.')
             error.status=404
-            throw error
+            next(error)
+            return
           }
 
           if(!concert.userId===userId){

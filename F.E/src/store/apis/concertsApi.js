@@ -2,7 +2,6 @@ import { nanoid } from '@reduxjs/toolkit'
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
 import { getAuthToken } from '../../utils/getAuthToken'
 
-const token = getAuthToken()
 
 const concertsApi=createApi({
     reducerPath:'concerts',
@@ -20,7 +19,7 @@ const concertsApi=createApi({
                         url:'/concerts',
                         method:'POST',
                         headers:{
-                            Authorization:'Bearer '+ token
+                            Authorization:'Bearer '+ getAuthToken()
                         },
                         body:{
                             title:concert.title,
@@ -41,7 +40,7 @@ const concertsApi=createApi({
                     return{
                         url:`/concerts/${concert.id}`,
                         headers:{
-                            Authorization:'Bearer '+ token
+                            Authorization:'Bearer '+ getAuthToken()
                         },
                         method:'DELETE'
                     }
@@ -73,7 +72,7 @@ const concertsApi=createApi({
                     url: `/concerts/${concertId}`,
                     method: 'GET',
                     headers:{
-                        Authorization:'Bearer '+ token
+                        Authorization:'Bearer '+ getAuthToken()
                     },
                   };
                 },
@@ -85,7 +84,7 @@ const concertsApi=createApi({
                         url:`/concerts/${concert.id}`,
                         method:'PATCH',
                         headers:{
-                            Authorization:'Bearer '+ token
+                            Authorization:'Bearer '+ getAuthToken()
                         },
                         body:{
                             title:concert.title,

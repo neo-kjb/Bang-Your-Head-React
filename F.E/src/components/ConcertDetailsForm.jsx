@@ -9,7 +9,6 @@ function ConcertDetailsForm({ concert }) {
   const [isAuthorized, setIsAuthorized] = useState(false);
 
   const { data } = useGetCurrentUserQuery();
-  console.log(data);
 
   useEffect(() => {
     if (data) {

@@ -1,43 +1,15 @@
 const express = require('express')
 const router = express.Router()
 const Review = require('../models/reviews')
+const { deleteReview, fetchReviews, addReview } = require('../controllers/reviews')
+const { isAuth } = require('../middleware')
+const { addReviewValidation } = require('../config/validation')
 
-router.get('/reviews/:concertId',async(req,res)=>{
-    try {
-        const reviews= await Review.find()
-        res.status(200).send(reviews)
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Internal server error' });
-    }
-})
+router.get('/reviews/:concertId',fetchReviews)
 
-router.post('/reviews',async(req,res)=>{
-    const {reviewText,reviewRating,userId,userName,concertId,id}=req.body
+router.post('/reviews',addReviewValidation,isAuth,addReview)
 
-        try {
-            const review=new Review({reviewText,reviewRating,userId,userName,concertId,id})
-            await review.save()
-            res.status(201)
-
-        } catch (error) {
-            console.log(error);
-            res.status(500).json({ error: 'Internal server error' });
-
-        }
-})
-
-router.delete('/reviews/:id',async(req,res)=>{
-    const reviewId=req.params.id
-    try {
-        await Review.findOneAndDelete({id:reviewId})
-        res.status(204)
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({ error: 'Internal server error' });
-
-    }
-})
+router.delete('/reviews/:id',isAuth,deleteReview)
 
 
 module.exports=router

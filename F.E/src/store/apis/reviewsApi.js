@@ -1,5 +1,6 @@
 import { nanoid } from '@reduxjs/toolkit'
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
+import { getAuthToken } from '../../utils/getAuthToken'
 
 const reviewsApi=createApi({
     reducerPath:'reviwes',
@@ -16,6 +17,9 @@ const reviewsApi=createApi({
                     return{
                         url:'/reviews',
                         method:'POST',
+                        headers:{
+                            Authorization:'Bearer '+ getAuthToken()
+                        },
                         body:{
                             reviewText:review.reviewText,
                             reviewRating:review.ratingValue,
@@ -34,6 +38,9 @@ const reviewsApi=createApi({
                     return{
                         url:`/reviews/${review.id}`,
                         method:'DELETE',
+                        headers:{
+                            Authorization:'Bearer '+ getAuthToken()
+                        },
 
                     }
                 }

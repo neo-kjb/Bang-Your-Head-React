@@ -3,7 +3,6 @@ import {createApi, fetchBaseQuery,} from '@reduxjs/toolkit/query/react'
 
 
 import { getAuthToken } from '../../utils/getAuthToken'
-const token=getAuthToken()
 
 
 const usersApi=createApi({

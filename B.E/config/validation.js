@@ -47,3 +47,17 @@ module.exports.createConcertValidation=[
     body('name').trim().notEmpty(),
     body('id').trim().notEmpty()
   ]
+
+
+
+  module.exports.addReviewValidation = [
+    body('reviewText').trim().notEmpty().withMessage('Review text is required'),
+    body('reviewRating')
+      .trim()
+      .notEmpty().withMessage('Review rating is required')
+      .isNumeric().withMessage('Review rating must be a number'),
+    body('userId').trim().notEmpty().withMessage('User ID is required'),
+    body('userName').trim().notEmpty().withMessage('User name is required'),
+    body('concertId').trim().notEmpty().withMessage('Concert ID is required'),
+    body('id').trim().notEmpty().withMessage('ID is required'),
+  ]
